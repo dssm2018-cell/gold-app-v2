@@ -1,0 +1,11 @@
+{
+  "name": "مساعد شراء الذهب",
+  "short_name": "شراء الذهب",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": []
+}

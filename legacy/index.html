@@ -1,0 +1,2428 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="مساعد شراء الذهب">
+<title>مساعد شراء الذهب — النسخة النهائية</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f7f8;color:#17202a;font-family:-apple-system,BlinkMacSystemFont,"SF Arabic","Tahoma",sans-serif}
+.app{max-width:860px;margin:auto;min-height:100vh;background:#fff}
+header{padding:28px 20px 18px;background:#fff}header h1{margin:0;font-size:30px;text-align:right}header p{margin:5px 0 0;color:#7a8087;text-align:right;font-size:14px}
+.topnav{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:0 18px 16px;background:#fff;border-bottom:1px solid #eee}
+.topnav button{border:0;border-radius:20px;padding:17px 8px;background:#f1efeb;color:#252525;font-size:17px;font-weight:900}
+.topnav button,.topnav a{font:inherit;text-decoration:none;color:inherit;border:0;cursor:pointer;background:#f4f1eb;border-radius:18px;padding:14px 20px;display:flex;align-items:center;justify-content:center}.topnav button.active,.topnav a.active{background:#ece9e3}
+.page{display:none;padding:20px 18px 40px}.page.active{display:block}
+.card{background:#fff;border:1px solid #e4e7ea;border-radius:22px;padding:18px;margin-bottom:15px;box-shadow:0 4px 18px #00000007}
+h2{font-size:28px;margin:4px 0 16px}h3{font-size:19px;margin:4px 0 12px}
+label{display:block;font-size:14px;font-weight:800;color:#56606a;margin:10px 0 7px}
+input,select,textarea{width:100%;padding:14px;border:1px solid #d7dce1;border-radius:15px;font-size:17px;background:#fff;color:#17202a}
+textarea{min-height:90px;resize:vertical}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{width:100%;border:0;border-radius:16px;padding:15px;font-size:17px;font-weight:900;background:#ececec;color:#202020;margin-top:12px}.btn.primary{background:#b78b2e;color:#fff}.btn.dark{background:#252525;color:#fff}.btn.danger{background:#a73535;color:#fff}.btn.small{width:auto;padding:10px 15px;font-size:14px;margin:0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:#7a8087;font-size:12px;line-height:1.7}.result-red{color:#b42318;font-weight:900}
+.pricegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.priceitem{padding:14px;border-radius:16px;background:#f7f7f6}.priceitem b{display:block;font-size:13px;color:#747474}.priceitem strong{font-size:23px;margin-top:4px;display:block}
+.status{padding:10px 12px;border-radius:13px;background:#f4f1e9;font-size:12px;margin-top:10px}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#f7f7f6;border-radius:16px;padding:14px}.metric span{display:block;color:#747474;font-size:12px}.metric strong{display:block;font-size:22px;margin-top:5px}
+.alert{padding:13px 14px;border-radius:14px;background:#f5f1e6;color:#6d571f;font-size:13px;line-height:1.7}.alert.ok{background:#e5f1e3;color:#286025}.alert.warn{background:#fff0d6;color:#7a5710}.alert.bad{background:#f7dddd;color:#8d2424}
+.testrow{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #eee;gap:10px}.testrow:last-child{border-bottom:0}.check{width:25px;height:25px}
+.tradebox{text-align:center;padding:24px 15px}.tradecarat{font-size:22px;color:#777}.tradepriceWrap{position:relative;display:flex;align-items:center;justify-content:center;margin:8px 0}.tradeprice{font-size:45px;font-weight:950}.stageArrow{position:absolute;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#7a8087;font-size:22px;font-weight:900;line-height:1;padding:4px 7px;cursor:pointer}.stageArrow.left{left:4px}.stageArrow.right{right:4px}.stageArrow.hidden{display:none}.tradeper{font-size:14px;color:#777}.trademain{font-size:23px;font-weight:900;margin-top:5px}.tradecontrols{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:12px;align-items:center;margin-top:22px}.minus,.plus{border:0;border-radius:18px;padding:18px;font-size:26px;font-weight:900}.minus{background:#d94a4a;color:#fff}.plus{background:#8ee6a9;color:#103a1e}.plus.stage2{background:#176b38;color:#fff}.plus.stage2-entry{background:#176b38;color:#fff}.plus.stage2-entry{cursor:pointer}.undoTrade{border:0;background:#f0f1f2;color:#555;border-radius:12px;padding:8px 14px;font-size:14px;font-weight:800;margin-top:10px}.undoTrade:disabled{opacity:.45}.plus.stage2-entry:disabled{opacity:1}.golddot{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#d3a438;color:#fff;font-size:18px;box-shadow:0 2px 8px #0002}.hidden{display:none!important}.pin{text-align:center;letter-spacing:8px}.clientview{padding:24px;text-align:center}.clientview .carat{font-size:30px;font-weight:950}.clientview .per{font-size:34px;font-weight:950;margin:10px 0}.clientview .total{font-size:28px;font-weight:900}.listitem{padding:12px 0;border-bottom:1px solid #eee}.listitem:last-child{border-bottom:0}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#eee;font-size:12px;font-weight:800}
+@media(max-width:560px){.grid,.metrics,.pricegrid{grid-template-columns:1fr 1fr}.page{padding:17px 14px 35px}h2{font-size:26px}.tradeprice{font-size:40px}}
+
+.stageArrow{display:none!important}.tradecontrols{display:grid;grid-template-columns:1fr;gap:12px;align-items:center;margin-top:22px}.tradeprivate{margin-top:12px;padding:13px 14px;border-radius:16px;background:#f7f7f6;text-align:right}.tradeprivate .privategrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tradeprivate .privateitem{background:#fff;border-radius:12px;padding:10px}.tradeprivate .privateitem span{display:block;color:#777;font-size:11px}.tradeprivate .privateitem b{display:block;font-size:17px;margin-top:3px}.tradeunlock{border:0;background:transparent;color:#777;font-size:11px;margin-top:10px;padding:4px}.clientview{display:none!important}
+.header-actions{float:left;display:flex;align-items:center;gap:8px}.home-btn{margin:0}.icon-btn{width:42px;height:42px;border:0;border-radius:14px;background:#f4f1eb;font-size:22px;cursor:pointer}.topnav{grid-template-columns:repeat(4,1fr)}.plus{background:#69c889;color:#0b2f19}.plus.stage2{background:#0f542b;color:#fff}.tradeprivate{border:1px solid #d8dbd7}.private-locked-note{font-size:12px;color:#777;margin-top:8px}.density-good{background:#e5f1e3;color:#286025}.density-warn{background:#fff0d6;color:#7a5710}.density-bad{background:#f7dddd;color:#8d2424}
+@media(max-width:560px){.topnav{grid-template-columns:repeat(4,1fr);gap:7px}.topnav a{padding:12px 5px;font-size:14px}.header-actions{gap:6px}}
+.toTop{position:fixed;right:18px;bottom:22px;width:46px;height:46px;border:0;border-radius:15px;background:#252525;color:#fff;font-size:22px;font-weight:900;box-shadow:0 6px 18px #0003;display:none;z-index:50;cursor:pointer}.toTop.show{display:block}@media(max-width:560px){.toTop{right:14px;bottom:16px;width:44px;height:44px}}
+</style>
+</head>
+<body>
+<button id="toTopBtn" class="toTop" aria-label="العودة للأعلى" title="العودة للأعلى">↑</button>
+<div class="app">
+<header><div class="header-actions"><button class="btn small home-btn" onclick="navigate('home')">الرئيسية</button><button class="icon-btn" onclick="navigate('help')" aria-label="المساعدة" title="المساعدة">📖</button></div><h1>أبو ريم</h1><p>مساعد شراء الذهب</p><div style="clear:both"></div></header>
+<div class="topnav" id="topNav">
+<a href="#test" data-page="test">🧪 الاختبار</a>
+<a href="#result" data-page="result">📋 النتيجة</a>
+<a href="#report" data-page="report">🧾 التقرير</a>
+<a href="#admin" data-page="admin">⚙️ الإدارة</a>
+</div>
+
+<section id="home" class="page">
+<h2>الرئيسية</h2>
+<div class="card">
+<div class="row"><h3>أسعار الذهب الخام</h3><button class="btn small" onclick="refreshPrices()">🔄 تحديث</button></div>
+<div class="pricegrid" id="prices"></div>
+<div id="priceStatus" class="status">آخر تحديث: —</div>
+</div>
+<div class="card">
+<button class="btn primary" onclick="newDeal()">ابدأ صفقة جديدة</button>
+<div id="activeDealHome" class="alert warn hidden" style="margin-top:12px"></div>
+</div>
+</section>
+
+<section id="test" class="page active">
+<h2>الاختبار</h2>
+<div class="card">
+<div class="row"><div><b>رقم الصفقة</b><div id="dealNo" class="muted">سيُنشأ تلقائيًا</div></div><span class="badge">صفقة جديدة</span></div>
+<label>وزن القطعة في الهواء (جم)</label><input id="air" type="number" step="0.01" min="0">
+<label>العيار المعلن (اختياري)</label><select id="decl"><option value="">غير محدد</option><option>24</option><option>22</option><option>21</option><option>19</option><option>18</option><option>16</option><option>14</option><option>10</option></select>
+<label>الصور</label><input id="photos" type="file" accept="image/*" multiple>
+<div id="photoList" class="muted"></div>
+</div>
+
+<div class="card">
+<h3>الكثافة</h3>
+<label>قراءة الطفو الأولى في الماء بعد تصفير الميزان (جم)</label><input id="buoy1" type="number" step="0.01" min="0">
+<div class="grid">
+<div><label>القراءة الثانية (اختياري)</label><input id="buoy2" type="number" step="0.01" min="0"></div>
+<div><label>القراءة الثالثة (اختياري)</label><input id="buoy3" type="number" step="0.01" min="0"></div>
+</div>
+<div class="metrics" style="margin-top:10px"><div class="metric"><span>متوسط الكثافة</span><strong id="density">—</strong></div><div class="metric"><span>العيار التقريبي من الكثافة</span><strong id="densityKarat">—</strong></div><div class="metric"><span>ثبات القياس</span><strong id="densityState">غير مجراة</strong></div></div>
+<div id="densityQuality" class="status">أدخل قراءة واحدة على الأقل. القياسات المتكررة ترفع موثوقية النتيجة إذا كانت متقاربة.</div>
+<div class="muted" style="margin-top:8px">كل قراءة = وزن الهواء ÷ قراءة الطفو. يتم تقييم التقارب بين القياسات، ولا تُعتبر القراءة الواحدة إثباتًا مخبريًا.</div>
+</div>
+
+<div class="card">
+<h3>اختبارات العيار</h3>
+<div id="testOptions"></div>
+</div>
+
+<div class="card">
+<h3>اختبارات أخرى</h3>
+<label>اللون</label><select id="color"><option value="">لم يُجر</option><option>أصفر</option><option>أصفر فاتح</option><option>أصفر غامق</option><option>مائل للأحمر</option><option>أبيض/فضي</option><option>غير واضح</option></select>
+<label>الشكل/المظهر</label><select id="shape"><option value="">لم يُجر</option><option>طبيعي ومناسب</option><option>مختلف</option><option>مطلي/مشبوه</option><option>غير واضح</option></select>
+<label>ملاحظات داخلية</label><textarea id="notes" placeholder="لا تظهر للعميل"></textarea>
+<button class="btn primary" onclick="runAnalysis()">تحليل النتيجة</button>
+<button class="btn" style="margin-top:10px" onclick="startQuickDeal()">⚡ صفقة سريعة — بدون اختبارات</button>
+</div>
+</section>
+
+<section id="result" class="page">
+<button class="btn" id="backToTestResult" onclick="navigate('test')">🧪 العودة للاختبار</button>
+<h2>النتيجة</h2>
+<div id="resultBox" class="card"><div class="alert">أجرِ الاختبارات ثم اضغط تحليل النتيجة.</div></div>
+<div id="tradeChoice" class="card hidden" style="margin-top:12px">
+<h3>اختيار عيار التفاوض</h3>
+<div class="muted">إذا اختلفت نتائج الفحص، يمكنك اختيار العيار الذي تريد أن تبني عليه التفاوض. التطبيق سيحتفظ بوجود التعارض كتحذير، لكنه لن يجبرك على إعادة الاختبار.</div>
+<label>العيار المستخدم للتفاوض</label><select id="tradeKSelect"></select>
+<button class="btn primary" onclick="startNegotiation()">الانتقال للتفاوض بالعيار المختار</button>
+</div>
+<button id="toTrade" class="btn primary hidden" onclick="startNegotiation()">الانتقال للتفاوض</button>
+</section>
+
+<section id="report" class="page">
+<h2>التقرير</h2>
+<div class="card">
+<div class="row"><h3>تقرير الصفقة</h3><button class="btn small" onclick="buildReport()">تحديث</button></div>
+<div id="reportBox"><div class="alert">لا توجد صفقة مكتملة أو نشطة لعرض تقريرها.</div></div>
+<button class="btn primary" onclick="downloadCurrentReport()">تحميل التقرير على الجهاز</button>
+<button class="btn" onclick="printCurrentReport()">طباعة / حفظ كـ PDF</button>
+</div>
+<div class="card"><h3>ملخص العمليات المحفوظة</h3><div id="reportDeals"></div></div>
+</section>
+
+<section id="trade" class="page">
+<div class="row"><h2>التفاوض</h2></div>
+<div class="card tradebox">
+<div class="tradecarat" id="tradeCarat">—</div>
+<div class="tradeweight" style="text-align:center;margin:4px 0 10px;font-size:1.15rem;font-weight:700;color:#555">الوزن الأصلي: <span id="tradeWeight">—</span></div>
+<div class="tradepriceWrap">
+  <div class="tradeprice" id="tradePrice" title="اضغط مطولًا لفتح التحكم الخاص">—</div>
+</div>
+<div class="tradeper">ريال / جم</div>
+<div class="trademain" id="tradeTotal">—</div>
+<div class="tradecontrols">
+<button id="increaseTradeBtn" class="plus" onclick="changeTrade(1)" aria-label="رفع السعر">رفع السعر</button>
+<button id="undoTradeBtn" class="undoTrade" onclick="undoTrade()" disabled>↩ تراجع</button>
+</div>
+<div id="tradeMessage" class="status hidden"></div>
+<div id="tradePrivate" class="tradeprivate hidden">
+  <div class="privategrid">
+    <div class="privateitem"><span>المرحلة</span><b id="privateStage">—</b></div>
+    <div class="privateitem"><span>السعر المرجعي</span><b id="privateBase">—</b></div>
+    <div class="privateitem"><span>الخصم الحالي</span><b id="privateDiscount">—</b></div>
+    <div class="privateitem"><span>نسبة الخصم</span><b id="privatePercent">—</b></div>
+    <div class="privateitem"><span>الخطوة القادمة</span><b id="privateNext">—</b></div>
+    <div class="privateitem"><span>حد المرحلة</span><b id="privateLimit">—</b></div>
+  </div>
+  <div class="privategrid" style="margin-top:9px">
+    <div class="privateitem"><span>تكلفة الصهر والتنقية</span><b id="privateProcessCost">—</b></div>
+    <div class="privateitem"><span>سعر القرار</span><b id="privateDecisionPrice">—</b></div>
+  </div>
+  <div class="grid" style="margin-top:10px">
+    <button class="btn" onclick="toggleTradeLock()" id="tradeLockBtn">🔒 تثبيت السعر</button>
+    <button class="btn" onclick="setTradeLastOffer()" id="tradeLastBtn">🛑 آخر عرض</button>
+    <button class="btn" onclick="pauseTrade()">⏸️ إيقاف مؤقت</button>
+    <button class="undoTrade" onclick="hideTradePrivate()">إخفاء التحكم</button>
+  </div>
+</div>
+<button class="tradeunlock" onclick="unlockTradePrivate()">🔐 تحكم خاص</button>
+</div>
+<div class="grid">
+<button class="btn" onclick="pauseTrade()">خروج مؤقت</button>
+<button class="btn danger" onclick="cancelTrade()">إلغاء الصفقة</button>
+</div>
+<div id="tradeEndReasonBox" class="card hidden" style="margin-top:10px">
+<label>سبب إنهاء التفاوض</label>
+<select id="tradeEndReason"><option value="purchased">تم الشراء</option><option value="seller_refused">البائع لم يوافق</option><option value="price_not_suitable">السعر غير مناسب لي</option><option value="paused">تفاوض مؤجل</option><option value="other">سبب آخر</option></select>
+</div>
+<button class="btn primary" onclick="agreeTrade()">تم الاتفاق</button>
+</section>
+
+<section id="help" class="page">
+<h2>المساعدة والمرجع</h2>
+<div class="card">
+<h3>📖 مرجع تنقية الذهب والصهر</h3>
+<div class="alert warn">العمليات الكيميائية، وخصوصًا حمض النيتريك، خطرة وتتطلب مكان عمل مجهزًا وتهوية مناسبة ومعدات حماية وإجراءات تشغيل معتمدة. هذه الصفحة مرجع تنظيمي وتذكيري، وليست وصفة تشغيلية لكمية الحمض أو خطوات تنفيذية للتنقية.</div>
+<h3 style="margin-top:16px">الصهر — مرجع سريع</h3>
+<ol class="muted" style="font-size:14px;padding-right:22px">
+<li>فرز المعدن والتأكد من الوزن والعيار المعلن قبل الصهر.</li>
+<li>استخدام أدوات ووعاء صهر مناسبين للمعدن وبيئة عمل جيدة التهوية.</li>
+<li>تجنب خلط المعادن أو الإضافات دون معرفة تركيبها وتأثيرها على العيار.</li>
+<li>بعد التبريد، أعد الوزن وسجل الفاقد وأي ملاحظات قبل اعتماد النتيجة.</li>
+</ol>
+<h3 style="margin-top:16px">التنقية بالحمض — مرجع آمن</h3>
+<ul class="muted" style="font-size:14px;padding-right:22px">
+<li>حمض النيتريك مادة أكّالة ومؤكسدة ويمكن أن تسبب أذى شديدًا للجلد والعينين وأبخرة ضارة؛ يجب الرجوع إلى SDS وإجراءات السلامة المعتمدة في مكان العمل.</li>
+<li>لا تستخدم الصفحة لتقدير كمية نيتريك للتنفيذ. الكمية تعتمد على تركيز الحمض وتركيب الخردة ومسار التنقية، ويجب أخذها من SOP معتمد ومُختبر.</li>
+<li>لا تعمل في مكان مغلق، ولا تخلط الأحماض أو تسخنها إلا ضمن إجراء مهني مصمم لذلك.</li>
+</ul>
+</div>
+<div class="card">
+<h3>🧮 حاسبة خفض العيار بالنحاس والفضة</h3>
+<div class="muted">تعتمد الحاسبة على أن العيار = نسبة الذهب بالكتلة × 24. أدخل وزن الذهب/السبيكة الحالية وعيارها والعيار المطلوب، ثم حدد نسبة النحاس من الإضافة؛ والباقي فضة.</div>
+<label>الوزن الحالي (جم)</label><input id="alloyWeight" type="number" step="0.01" min="0">
+<label>العيار الحالي</label><select id="alloyCurrentK"><option value="24">24K</option><option value="22">22K</option><option value="21">21K</option><option value="19">19K</option><option value="18">18K</option><option value="16">16K</option><option value="14">14K</option><option value="10">10K</option></select>
+<label>العيار المطلوب</label><select id="alloyTargetK"><option value="22">22K</option><option value="21">21K</option><option value="19">19K</option><option value="18" selected>18K</option><option value="16">16K</option><option value="14">14K</option><option value="10">10K</option></select>
+<label>نسبة النحاس من المعادن المضافة (%)</label><input id="copperRatio" type="number" step="0.1" min="0" max="100" value="50">
+<button class="btn primary" onclick="calcAlloying()">احسب الإضافة</button>
+<div id="alloyResult" class="metrics" style="margin-top:12px"></div>
+</div>
+<div class="card">
+<h3>📌 مرجع سريع للعيارات</h3>
+<div class="muted">24K ≈ 100% ذهب، 22K ≈ 91.67%، 21K = 87.5%، 18K = 75%، 14K ≈ 58.33%. العيار وحده لا يحدد لون السبيكة؛ نسب النحاس والفضة وبقية المعادن تؤثر في اللون والخواص.</div>
+</div>
+</section>
+
+<section id="client" class="page">
+<h2>بيانات العميل</h2>
+<div class="card">
+<label>اسم العميل</label><input id="clientName">
+<label>رقم الجوال</label><input id="clientPhone" inputmode="tel">
+<label>ملاحظات</label><textarea id="clientNotes"></textarea>
+<button class="btn primary" onclick="saveAgreedDeal()">حفظ الصفقة</button>
+</div>
+</section>
+
+<section id="admin" class="page">
+<h2>الإدارة</h2>
+<div id="pinGate" class="card">
+<h3>قفل الإدارة</h3><input id="pinInput" class="pin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN">
+<button class="btn primary" onclick="unlockAdmin()">دخول</button>
+<div class="muted">PIN الافتراضي لأول تشغيل: 1234 (يُنصح بتغييره)</div>
+</div>
+<button id="backToTestAdmin" class="btn" onclick="navigate('test')">العودة للاختبار</button>
+<div id="adminPanel"  class="hidden">
+<div class="card">
+<h3>GoldAPI</h3>
+<label>مفتاح GoldAPI</label><input id="apiKey" type="password">
+<button class="btn" onclick="saveApiKey()">حفظ المفتاح</button>
+<div class="muted">يُحفظ محليًا على هذا الجهاز. التطبيق لا يرسله إلا إلى GoldAPI عند الضغط على تحديث.</div>
+</div>
+<div class="card">
+<h3>اختبارات الصفقة الافتراضية</h3>
+<div id="adminTests"></div>
+<button class="btn" onclick="saveTestDefaults()">حفظ الاختبارات</button>
+</div>
+<div class="card">
+<h3>التفاوض لكل عيار</h3>
+<div class="muted">لكل عيار تحدد خطة ثابتة بالخصومات، بينما السعر نفسه يتغير مع سعر الذهب الحالي. مثال: السعر الحالي 418، خصم البداية 120 ⇒ السعر المعروض 298. إذا كان حد المرحلة الأولى 90، تنتهي عند 328. ثم المرحلة الثانية تنتهي عند خصم 70 ⇒ 348. كل ضغطة تقلل الخصم بالمقدار المحدد، فيرتفع السعر تلقائيًا. نسبة الخصم تُحسب دائمًا من السعر المرجعي الحالي للصفقة.</div>
+<div id="negAdmin"></div>
+<button class="btn" onclick="saveNeg()">حفظ إعدادات التفاوض</button>
+</div>
+<div class="card">
+<h3>الحماية</h3>
+<label>تغيير PIN</label><input id="newPin" type="password" inputmode="numeric" maxlength="8">
+<button class="btn" onclick="changePin()">تغيير PIN</button>
+<button class="btn" onclick="registerBiometric()">🔐 تفعيل Face ID / المصادقة الحيوية</button>
+<div id="biometricStatus" class="muted">المصادقة الحيوية متاحة فقط إذا دعمها المتصفح والجهاز وعلى اتصال آمن. سيبقى PIN كخيار احتياطي.</div>
+</div>
+<div class="card">
+<h3>البيانات والتقارير</h3>
+<div class="row"><span>عدد الصفقات المحفوظة</span><b id="dealCount">0</b></div>
+<button class="btn" onclick="backup()">نسخة احتياطية</button>
+<button class="btn" onclick="document.getElementById('restore').click()">استيراد نسخة احتياطية</button>
+<input id="restore" class="hidden" type="file" accept=".json,application/json">
+<button class="btn" onclick="navigate('report');buildReport()">تقرير العمليات</button>
+<button class="btn danger" onclick="lockAdmin()">قفل الإدارة</button>
+</div>
+</div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const b=document.getElementById("toTopBtn");
+  if(!b)return;
+  const update=()=>b.classList.toggle("show",window.scrollY>350);
+  window.addEventListener("scroll",update,{passive:true});
+  b.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+  update();
+});
+
+/* =========================
+   V6-2 — البيع الفعلي والبيع الجماعي
+   إصلاحات V6-1 + طبقة البيع الفعلي دون تعديل بيانات الشراء الأصلية.
+========================= */
+(function(){
+  const prevRenderV4 = window.renderV4;
+  const prevLoadPostEdit = window.loadPostEdit;
+
+  state.v6 = state.v6 && typeof state.v6 === 'object' ? state.v6 : {};
+  state.v6.sales = Array.isArray(state.v6.sales) ? state.v6.sales : [];
+  state.v6.sales = state.v6.sales.filter(x=>x && x.id && Array.isArray(x.dealIds));
+
+  function n(v,f=0){const x=Number(v);return Number.isFinite(x)?x:f;}
+  function money(v){return fmt(v,0);}
+  function esc2(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function dealCost(d){
+    const pc=n(d.purchaseCost,NaN);
+    if(Number.isFinite(pc) && pc>0)return pc;
+    return Math.max(0,n(d.finalTotal,0)+n(d.processCost,0)+n(d.otherCost,0));
+  }
+  function expected(d){
+    if(typeof window.v6ExpectedForDeal==='function')return window.v6ExpectedForDeal(d);
+    const w=n(d.air), k=n(d.carat), market=n(state.prices?.[24]);
+    const w24=w>0&&k>0?w*k/24:null;
+    const dis=d.expectedDiscount===''||d.expectedDiscount==null?null:n(d.expectedDiscount,NaN);
+    if(!w24 || !market || !Number.isFinite(dis))return {w24,market,discount:null,salePrice:null,saleValue:null,profit:null,cost:dealCost(d)};
+    const salePrice=Math.max(0,market-dis), saleValue=salePrice*w24, cost=dealCost(d);
+    return {w24,market,discount:dis,salePrice,saleValue,profit:saleValue-cost,cost};
+  }
+  function soldSaleId(d){return d.v6SaleId||null;}
+  function isSold(d){return !!soldSaleId(d) || !!d.v6SoldAt;}
+  function availableDeals(){return (state.deals||[]).filter(d=>d && d.no && !isSold(d));}
+  function saleById(id){return state.v6.sales.find(s=>s.id===id)||null;}
+  function newSaleId(){return 'S-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,6).toUpperCase();}
+
+  function actualSummary(){
+    const sales=state.v6.sales;
+    const totalSales=sales.reduce((a,s)=>a+n(s.saleAmount),0);
+    const totalCost=sales.reduce((a,s)=>a+n(s.totalCost),0);
+    return {sales,totalSales,totalCost,profit:totalSales-totalCost};
+  }
+
+  window.openV6Sale=function(){
+    const box=document.getElementById('v6SaleBox');
+    if(!box)return;
+    const deals=availableDeals();
+    if(!deals.length){alert('لا توجد صفقات غير مباعة يمكن إدخالها في عملية بيع.');return;}
+    box.classList.remove('hidden');
+    const list=document.getElementById('v6SaleDeals');
+    if(list)list.innerHTML=deals.map(d=>`<label class="listitem" style="display:block;cursor:pointer"><input type="checkbox" data-v6-sale-deal value="${esc2(d.no)}"> <b>${esc2(d.no)}</b> — ${d.carat?d.carat+'K':'—'} — ${money(d.air||0)} جم — تكلفة ${money(dealCost(d))} ريال</label>`).join('');
+    const w=document.getElementById('v6ActualWeight'); if(w)w.value='';
+    const a=document.getElementById('v6ActualAmount'); if(a)a.value='';
+    const notes=document.getElementById('v6ActualNotes'); if(notes)notes.value='';
+    updateV6SalePreview();
+  };
+  window.closeV6Sale=function(){document.getElementById('v6SaleBox')?.classList.add('hidden');};
+  window.updateV6SalePreview=function(){
+    const ids=[...document.querySelectorAll('[data-v6-sale-deal]:checked')].map(x=>x.value);
+    const deals=ids.map(id=>(state.deals||[]).find(d=>d.no===id)).filter(Boolean);
+    const cost=deals.reduce((a,d)=>a+dealCost(d),0);
+    const exp=deals.reduce((a,d)=>a+(expected(d).profit??0),0);
+    const box=document.getElementById('v6SalePreview');
+    if(box)box.innerHTML=`<div class="metrics"><div class="metric"><span>الصفقات المختارة</span><strong>${deals.length}</strong></div><div class="metric"><span>إجمالي التكلفة</span><strong>${money(cost)} ريال</strong></div><div class="metric"><span>مجموع الربح المتوقع للقطع</span><strong>${money(exp)} ريال</strong></div></div>`;
+  };
+  window.saveV6Sale=function(){
+    const ids=[...document.querySelectorAll('[data-v6-sale-deal]:checked')].map(x=>x.value);
+    if(!ids.length){alert('اختر صفقة واحدة على الأقل.');return;}
+    const weight=n(document.getElementById('v6ActualWeight')?.value,0);
+    const amount=n(document.getElementById('v6ActualAmount')?.value,0);
+    if(weight<=0){alert('أدخل الوزن الفعلي المباع.');return;}
+    if(amount<=0){alert('أدخل قيمة البيع الفعلية.');return;}
+    const deals=ids.map(id=>(state.deals||[]).find(d=>d.no===id)).filter(d=>d && !isSold(d));
+    if(deals.length!==ids.length){alert('إحدى الصفقات المختارة تم بيعها مسبقًا. حدّث الصفحة ثم أعد الاختيار.');return;}
+    const totalCost=deals.reduce((a,d)=>a+dealCost(d),0);
+    const sale={id:newSaleId(),createdAt:Date.now(),dealIds:deals.map(d=>d.no),actualWeight:weight,saleAmount:amount,totalCost,actualProfit:amount-totalCost,notes:document.getElementById('v6ActualNotes')?.value||''};
+    state.v6.sales.unshift(sale);
+    deals.forEach(d=>{d.v6SaleId=sale.id;d.v6SoldAt=sale.createdAt;d.v6ActualWeight=weight;d.v6ActualSaleAmount=amount;});
+    saveState();
+    closeV6Sale();
+    if(typeof window.renderV4==='function')window.renderV4();
+    alert(`تم حفظ عملية البيع. الربح الفعلي: ${money(sale.actualProfit)} ريال`);
+  };
+
+  function injectSaleUI(){
+    const page=document.getElementById('v4dashboard');
+    if(!page)return;
+    if(!document.getElementById('v6ActualCard')){
+      const card=document.createElement('div');card.id='v6ActualCard';card.className='card';
+      card.innerHTML=`<div class="row"><h3>🟢 البيع الفعلي</h3><span class="badge">بعد البيع</span></div>
+        <div id="v6ActualStats" class="metrics" style="margin-top:10px"></div>
+        <button class="btn primary" type="button" onclick="openV6Sale()">+ تسجيل عملية بيع</button>
+        <div id="v6SalesTable" style="margin-top:12px"></div>
+        <div id="v6SaleBox" class="card hidden" style="margin-top:14px;background:#fafafa">
+          <h3>تسجيل بيع جماعي</h3><div class="muted">اختر عدة صفقات جمعتها وصهرتها ثم أدخل الوزن الفعلي المباع وقيمة البيع الفعلية. لن تتغير بيانات الشراء الأصلية.</div>
+          <div id="v6SaleDeals" style="margin-top:10px"></div>
+          <div id="v6SalePreview" style="margin-top:10px"></div>
+          <label>الوزن الفعلي المباع (جم)</label><input id="v6ActualWeight" type="number" min="0" step="0.01" oninput="updateV6SalePreview()">
+          <label>قيمة البيع الفعلية (ريال)</label><input id="v6ActualAmount" type="number" min="0" step="0.01">
+          <label>ملاحظات البيع (اختياري)</label><textarea id="v6ActualNotes"></textarea>
+          <div class="grid"><button class="btn primary" type="button" onclick="saveV6Sale()">💾 حفظ البيع</button><button class="btn" type="button" onclick="closeV6Sale()">إلغاء</button></div>
+        </div>`;
+      page.appendChild(card);
+    }
+  }
+
+  function renderV6Actual(){
+    injectSaleUI();
+    const deals=(state.deals||[]).filter(d=>d&&d.no);
+    const summary=actualSummary();
+    const expectedProfit=deals.filter(d=>expected(d).profit!==null).reduce((a,d)=>a+n(expected(d).profit),0);
+    const stats=document.getElementById('v6ActualStats');
+    if(stats)stats.innerHTML=`<div class="metric"><span>إجمالي البيع المحقق</span><strong>${money(summary.totalSales)} ريال</strong></div><div class="metric"><span>الربح المحقق</span><strong>${money(summary.profit)} ريال</strong></div><div class="metric"><span>عمليات البيع</span><strong>${summary.sales.length}</strong></div><div class="metric"><span>الربح المتوقع للصفقات</span><strong>${money(expectedProfit)} ريال</strong></div>`;
+    const table=document.getElementById('v6SalesTable');
+    if(table) table.innerHTML=summary.sales.length?`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;min-width:760px"><thead><tr><th>البيع</th><th>الصفقات</th><th>الوزن الفعلي</th><th>قيمة البيع</th><th>التكلفة</th><th>الربح الفعلي</th><th>التاريخ</th></tr></thead><tbody>${summary.sales.map(s=>`<tr><td>${esc2(s.id)}</td><td>${s.dealIds.length}</td><td>${money(s.actualWeight)} جم</td><td>${money(s.saleAmount)} ريال</td><td>${money(s.totalCost)} ريال</td><td>${money(s.actualProfit)} ريال</td><td>${new Date(s.createdAt).toLocaleDateString('ar-SA')}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">لا توجد عمليات بيع فعلية مسجلة بعد.</div>';
+  }
+
+  // نعيد حساب ملخص V6-1 دون فقد أي بيانات، ثم نضيف الملخص الفعلي.
+  window.renderV4=function(){
+    if(typeof prevRenderV4==='function')prevRenderV4();
+    const deals=(state.deals||[]).filter(d=>d&&d.no);
+    deals.forEach(d=>{
+      if(typeof window.v6ExpectedForDeal==='function')window.v6ExpectedForDeal(d);
+    });
+    renderV6Actual();
+    const summary=actualSummary();
+    const stats=document.getElementById('v4Stats');
+    if(stats){
+      stats.innerHTML=stats.innerHTML.replace(/<div class="metric"><span>V6 — البيع المحقق<\/span>.*?<\/div><div class="metric"><span>V6 — الربح المحقق<\/span>.*?<\/div>/s,'')+`<div class="metric"><span>البيع المحقق</span><strong>${money(summary.totalSales)} ريال</strong></div><div class="metric"><span>الربح المحقق</span><strong>${money(summary.profit)} ريال</strong></div>`;
+    }
+  };
+
+  // فتح الصفقة يستمر كما هو، مع إظهار حالتها وبيانات البيع الفعلي إن وجدت.
+  window.loadPostEdit=function(){
+    if(typeof prevLoadPostEdit==='function')prevLoadPostEdit();
+    const d=state.deals.find(x=>x.no===state.v4.editDealNo);
+    if(!d)return;
+    const old=document.getElementById('v6ActualDealInfo');
+    if(old)old.remove();
+    const host=document.getElementById('v6ExpectedBox')?.parentElement || document.getElementById('v4edit')?.querySelector('.card');
+    if(!host)return;
+    const info=document.createElement('div');info.id='v6ActualDealInfo';info.className='card';info.style.marginTop='14px';
+    if(isSold(d)){
+      const sale=saleById(d.v6SaleId);
+      info.innerHTML=`<h3>🟢 البيع الفعلي</h3><div class="alert ok">هذه الصفقة مباعة ضمن عملية ${esc2(sale?.id||d.v6SaleId)}.</div><div class="metrics"><div class="metric"><span>الوزن الفعلي للعملية</span><strong>${sale?money(sale.actualWeight)+' جم':'—'}</strong></div><div class="metric"><span>قيمة البيع الفعلية للعملية</span><strong>${sale?money(sale.saleAmount)+' ريال':'—'}</strong></div><div class="metric"><span>الربح الفعلي للعملية</span><strong>${sale?money(sale.actualProfit)+' ريال':'—'}</strong></div></div>`;
+    }else{
+      info.innerHTML='<div class="muted">لم تبع هذه الصفقة بعد. عند جمعها مع صفقات أخرى، استخدم «تسجيل عملية بيع» من صفحة التحليلات.</div>';
+    }
+    host.appendChild(info);
+  };
+
+  // يحدّث قائمة البيع عند العودة للتحليلات.
+  if(!window.__v62ChangeHook){
+    window.__v62ChangeHook=true;
+    document.addEventListener('change',e=>{if(e.target.matches('[data-v6-sale-deal]'))updateV6SalePreview();});
+  }
+
+  window.V6_2=true;
+  setTimeout(()=>{injectSaleUI();if(typeof window.renderV4==='function')window.renderV4();},0);
+})();
+
+</script>
+
+<script>
+
+
+"use strict";
+
+const KARATS = [24,22,21,19,18,16,14,10];
+const SKEY = "goldBuyer_vFinalTrial_2026";
+const EXPECTED_DENSITY = {24:19.32,22:17.60,21:16.75,19:16.00,18:15.50,16:14.15,14:13.55,10:12.00};
+
+function makeDefaultNeg(){
+  const out={};
+  // خطة ثابتة لكل عيار: خصم بداية، حد خصم المرحلة الأولى، حد خصم المرحلة الثانية، وخطوة رفع السعر.
+  KARATS.forEach(k=>out[k]={mode:"amount",startDiscount:120,stage1DiscountEnd:90,stage2DiscountEnd:70,step:5});
+  return out;
+}
+function makeDefaults(){
+  return {
+    prices:{24:0,22:0,21:0,19:0,18:0,16:0,14:0,10:0},
+    priceAt:0,apiKey:"",pin:"1234",
+    tests:{21:true,18:true,14:true,10:true,color:true,shape:true},
+    neg:makeDefaultNeg(),deals:[],active:null,biometric:null
+  };
+}
+const defaults = makeDefaults();
+let state = loadState();
+let adminUnlocked = false;
+
+function clone(x){
+  return JSON.parse(JSON.stringify(x));
+}
+function fmt(value, max=2){
+  const n=Number(value);
+  if(!Number.isFinite(n)) return "—";
+  return new Intl.NumberFormat("ar-SA",{maximumFractionDigits:max,minimumFractionDigits:max}).format(n);
+}
+function id(){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,"0");
+  const stamp=`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+  const rnd=Math.random().toString(36).slice(2,7).toUpperCase();
+  return `G-${stamp}-${rnd}`;
+}
+function finiteNumber(v, fallback=0){
+  const n=Number(v);
+  return Number.isFinite(n)?n:fallback;
+}
+function sanitizePrices(input){
+  const p={...defaults.prices};
+  if(input && typeof input==="object"){
+    KARATS.forEach(k=>{
+      const n=finiteNumber(input[k],0);
+      p[k]=n>0?n:0;
+    });
+  }
+  const p24=p[24];
+  if(p24>0){
+    KARATS.forEach(k=>{ if(!p[k]) p[k]=p24*k/24; });
+  }
+  return p;
+}
+function sanitizeNeg(input){
+  const out=makeDefaultNeg();
+  if(input && typeof input==="object"){
+    KARATS.forEach(k=>{
+      const n=input[k]||{};
+      const legacyEnd1=n.stage1DiscountEnd!==undefined ? n.stage1DiscountEnd : Math.max(0,finiteNumber(n.startDiscount,120)-Math.max(0,finiteNumber(n.stage1Increase,30)));
+      const legacyEnd2=n.stage2DiscountEnd!==undefined ? n.stage2DiscountEnd : Math.max(0,finiteNumber(legacyEnd1,90)-Math.max(0,finiteNumber(n.stage2Increase,20)));
+      out[k]={
+        mode:"amount",
+        startDiscount:Math.max(0,finiteNumber(n.startDiscount,120)),
+        stage1DiscountEnd:Math.max(0,finiteNumber(legacyEnd1,90)),
+        stage2DiscountEnd:Math.max(0,finiteNumber(legacyEnd2,70)),
+        step:Math.max(0.01,finiteNumber(n.step,5))
+      };
+    });
+  }
+  return out;
+}
+
+function normalizeState(raw){
+  const base=makeDefaults();
+  const x=(raw && typeof raw==="object")?raw:{};
+  const s={
+    prices:sanitizePrices(x.prices),
+    priceAt:finiteNumber(x.priceAt,0),
+    apiKey:typeof x.apiKey==="string"?x.apiKey:"",
+    pin:/^\d{4,8}$/.test(String(x.pin||""))?String(x.pin):base.pin,
+    tests:{...base.tests,...(x.tests&&typeof x.tests==="object"?x.tests:{})},
+    neg:sanitizeNeg(x.neg),
+    deals:Array.isArray(x.deals)?x.deals.slice(0,500):[],
+    v4:x.v4&&typeof x.v4==="object"?x.v4:null,
+    biometric:x.biometric&&typeof x.biometric==='object'?x.biometric:null,
+    v6:x.v6&&typeof x.v6==='object'?{
+      sales:Array.isArray(x.v6.sales)?x.v6.sales.filter(s=>s&&s.id&&Array.isArray(s.dealIds)).map(s=>({...s,dealIds:s.dealIds.filter(Boolean)})):[]
+    }:{sales:[]},
+    active:x.active&&typeof x.active==="object"?x.active:null
+  };
+  if(s.active){
+    s.active=normalizeDeal(s.active);
+  }
+  return s;
+}
+function normalizeDeal(raw){
+  const d=(raw&&typeof raw==="object")?raw:{};
+  const legacySnap=d.negSnapshot&&typeof d.negSnapshot==="object"?d.negSnapshot:null;
+  const legacyStage1Start=finiteNumber(d.stage1Start,0)>0
+    ? finiteNumber(d.stage1Start,0)
+    : finiteNumber(d.basePrice,0);
+  return {
+    no:typeof d.no==="string"&&d.no?d.no:id(),
+    createdAt:finiteNumber(d.createdAt,Date.now()),
+    air:Math.max(0,finiteNumber(d.air,0)),
+    buoy:Math.max(0,finiteNumber(d.buoy,0)),
+    buoys:Array.isArray(d.buoys)?d.buoys.map(v=>Math.max(0,finiteNumber(v,0))).slice(0,3):[Math.max(0,finiteNumber(d.buoy,0))],
+    densityReadings:Array.isArray(d.densityReadings)?d.densityReadings.map(v=>finiteNumber(v,0)).filter(v=>v>0).slice(0,3):[],
+    densityQuality:typeof d.densityQuality==='string'?d.densityQuality:'',
+    densitySpread:finiteNumber(d.densitySpread,0)||null,
+    decl:typeof d.decl==="string"?d.decl:"",
+    density:finiteNumber(d.density,0)||null,
+    tests:d.tests&&typeof d.tests==="object"?{...d.tests}:{},
+    color:typeof d.color==="string"?d.color:"",
+    shape:typeof d.shape==="string"?d.shape:"",
+    notes:typeof d.notes==="string"?d.notes:"",
+    photos:Array.isArray(d.photos)?d.photos.slice(0,2):[],
+    analysis:d.analysis&&typeof d.analysis==="object"?d.analysis:null,
+    stage:Math.max(0,Math.min(2,Math.round(finiteNumber(d.stage,0)))),
+    current:Math.max(0,finiteNumber(d.current,0)),
+    negHistory:Array.isArray(d.negHistory)?d.negHistory.map(v=>Math.max(0,finiteNumber(v,0))).filter(v=>Number.isFinite(v)):[Math.max(0,finiteNumber(d.current,0))],
+    negDiscountHistory:Array.isArray(d.negDiscountHistory)?d.negDiscountHistory.map(v=>Math.max(0,finiteNumber(v,0))).filter(v=>Number.isFinite(v)):[],
+    negHistoryStageStart:Math.max(0,Math.floor(finiteNumber(d.negHistoryStageStart,0))),
+    carat:finiteNumber(d.carat,0)||null,
+    basePrice:finiteNumber(d.basePrice,0)||null,
+    negSnapshot:d.negSnapshot&&typeof d.negSnapshot==="object"?{
+      mode:"amount",
+      startDiscount:Math.max(0,finiteNumber(d.negSnapshot.startDiscount,120)),
+      stage1DiscountEnd:Math.max(0,finiteNumber(d.negSnapshot.stage1DiscountEnd,finiteNumber(d.negSnapshot.startDiscount,120)-30)),
+      stage2DiscountEnd:Math.max(0,finiteNumber(d.negSnapshot.stage2DiscountEnd,finiteNumber(d.negSnapshot.startDiscount,120)-50)),
+      step:Math.max(0.01,finiteNumber(d.negSnapshot.step,5))
+    }:null,
+    stage1Start:finiteNumber(d.stage1Start,legacyStage1Start),
+    stage1End:finiteNumber(d.stage1End,0),
+    stage2Start:finiteNumber(d.stage2Start,0),
+    stage2End:finiteNumber(d.stage2End,0),
+    stage2OpenedAt:finiteNumber(d.stage2OpenedAt,0)||null,
+    stage1LastPrice:finiteNumber(d.stage1LastPrice,0)||null,
+    client:d.client&&typeof d.client==="object"?{...d.client}:null,
+    finalPrice:finiteNumber(d.finalPrice,0)||null,
+    finalTotal:finiteNumber(d.finalTotal,0)||null,
+    agreedAt:finiteNumber(d.agreedAt,0)||null,
+    completed:Boolean(d.completed),
+    quickDeal:Boolean(d.quickDeal),quickPriceMode:Boolean(d.quickPriceMode),
+    processCost:Math.max(0,finiteNumber(d.processCost,0)),
+    purchaseExtraCost:Math.max(0,finiteNumber(d.purchaseExtraCost,0)),
+    purchaseCost:Math.max(0,finiteNumber(d.purchaseCost,0)),
+    otherCost:Math.max(0,finiteNumber(d.otherCost,0)),
+    finalAssayK:finiteNumber(d.finalAssayK,0)||null,
+    finalWeight:finiteNumber(d.finalWeight,0)||null,
+    salePrice:Math.max(0,finiteNumber(d.salePrice,0)),
+    saleTotal:Math.max(0,finiteNumber(d.saleTotal,0)),
+    saleAt:finiteNumber(d.saleAt,0)||null,
+    postSmeltNotes:typeof d.postSmeltNotes==='string'?d.postSmeltNotes:'',
+    reviewNotes:typeof d.reviewNotes==='string'?d.reviewNotes:'',
+    cycleId:typeof d.cycleId==='string'&&d.cycleId?d.cycleId:null,
+    historicalSnapshot:d.historicalSnapshot&&typeof d.historicalSnapshot==='object'?{...d.historicalSnapshot}:null,
+    expectedDiscount:d.expectedDiscount===null||d.expectedDiscount===undefined||d.expectedDiscount===''?null:Math.max(0,finiteNumber(d.expectedDiscount,0)),
+    expectedMarket24:finiteNumber(d.expectedMarket24,0)||null,
+    theoretical24Weight:finiteNumber(d.theoretical24Weight,0)||null,
+    expectedSalePrice24:finiteNumber(d.expectedSalePrice24,0)||null,
+    expectedSaleValue:finiteNumber(d.expectedSaleValue,0)||null,
+    expectedProfit:Number.isFinite(Number(d.expectedProfit))?Number(d.expectedProfit):null,
+    v6SaleId:typeof d.v6SaleId==='string'&&d.v6SaleId?d.v6SaleId:null,
+    v6SoldAt:finiteNumber(d.v6SoldAt,0)||null,
+    v6ActualWeight:finiteNumber(d.v6ActualWeight,0)||null,
+    v6ActualSaleAmount:finiteNumber(d.v6ActualSaleAmount,0)||null,
+    decisionPrice:finiteNumber(d.decisionPrice,0)||null,priceLocked:Boolean(d.priceLocked),lastOffer:Boolean(d.lastOffer),endReason:typeof d.endReason==="string"?d.endReason:"",negotiationPausedAt:finiteNumber(d.negotiationPausedAt,0)||null
+  };
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(SKEY);
+    return normalizeState(raw?JSON.parse(raw):null);
+  }catch(e){
+    console.error("loadState",e);
+    return normalizeState(null);
+  }
+}
+function saveState(){
+  try{
+    localStorage.setItem(SKEY,JSON.stringify(state));
+    return true;
+  }catch(e){
+    console.error("saveState",e);
+    alert("تعذر حفظ البيانات على الجهاز. قد تكون مساحة التخزين ممتلئة، خصوصًا بسبب الصور.");
+    return false;
+  }
+}
+function effectivePrice(k){
+  const saved=finiteNumber(state.prices?.[k],0);
+  if(saved>0)return saved;
+  const p24=finiteNumber(state.prices?.[24],0);
+  return p24>0?p24*k/24:0;
+}
+
+function show(id){
+  const pages=document.querySelectorAll(".page");
+  pages.forEach(p=>{p.classList.remove("active");p.style.display="none";});
+  const target=document.getElementById(id);
+  if(!target)return false;
+  target.classList.add("active");
+  target.style.display="block";
+  document.querySelectorAll("#topNav a[data-page]").forEach(a=>{
+    a.classList.toggle("active",a.getAttribute("data-page")===id);
+  });
+
+  if(id==="test"){
+    if(!state.active){ newDeal(); return true; }
+    try{loadDealForm();}catch(e){console.error(e);}
+  }
+  if(id==="home"){try{renderHome();}catch(e){console.error(e);}}
+  if(id==="result"){try{renderResult();}catch(e){console.error(e);}}
+  if(id==="trade"){try{renderTrade();}catch(e){console.error(e);}}
+  if(id==="client"){try{loadClientForm();}catch(e){console.error(e);}}
+  if(id==="admin"){
+    if(adminUnlocked){
+      document.getElementById("pinGate").classList.add("hidden");
+      document.getElementById("adminPanel").classList.remove("hidden");
+      try{renderAdmin();}catch(e){console.error(e);}
+    }else{
+      document.getElementById("pinGate").classList.remove("hidden");
+      document.getElementById("adminPanel").classList.add("hidden");
+    }
+  }
+  return true;
+}
+function navigate(id){
+  if(id==="test" && !state.active){newDeal();return;}
+  window.location.hash=id;
+  show(id);
+}
+function setupTopNav(){
+  const nav=document.getElementById("topNav");
+  if(nav && !nav.dataset.bound){
+    nav.dataset.bound="1";
+    nav.addEventListener("click",function(ev){
+      const a=ev.target.closest("a[data-page]");
+      if(!a)return;
+      ev.preventDefault();
+      const id=a.getAttribute("data-page");
+      if(id==="test" && !state.active){newDeal();return;}
+      navigate(id);
+    });
+  }
+  window.addEventListener("hashchange",function(){
+    let id=(window.location.hash||"#home").slice(1);
+    const allowed=["home","test","result","trade","client","admin","report","v4dashboard","v4cycles","v4review","v4edit","help"];
+    if(!allowed.includes(id))id="home";
+    if(id==="trade" && !state.active)id="home";
+    show(id);
+  });
+}
+
+function renderPrices(){
+  const box=document.getElementById("prices");
+  box.innerHTML=KARATS.map(k=>{
+    const p=effectivePrice(k);
+    return `<div class="priceitem"><b>${k}K</b><strong>${p?fmt(p)+" ر.س":"—"}</strong></div>`;
+  }).join("");
+  document.getElementById("priceStatus").textContent=
+    state.priceAt
+      ?"آخر تحديث: "+new Date(state.priceAt).toLocaleString("ar-SA")
+      :"آخر تحديث: لا يوجد";
+}
+let priceRefreshBusy=false;
+async function refreshPrices(){
+  if(priceRefreshBusy)return;
+  if(!state.apiKey){alert("أضف مفتاح GoldAPI من الإدارة أولًا.");return;}
+  priceRefreshBusy=true;
+  const status=document.getElementById("priceStatus");
+  status.textContent="جاري تحديث الأسعار…";
+  try{
+    const r=await fetch("https://www.goldapi.io/api/XAU/SAR",{
+      headers:{"x-access-token":state.apiKey,"Content-Type":"application/json"},
+      cache:"no-store"
+    });
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    const j=await r.json();
+    const p24=finiteNumber(j.price_gram_24k,0)||finiteNumber(j.price_gram_24k_sar,0);
+    if(p24<=0)throw new Error("No 24K gram price");
+    state.prices[24]=p24;
+    KARATS.filter(k=>k!==24).forEach(k=>state.prices[k]=p24*k/24);
+    state.priceAt=Date.now();
+    saveState();
+    renderPrices();
+    if(adminUnlocked)renderNegAdmin();
+  }catch(e){
+    console.error("GoldAPI",e);
+    status.textContent=state.priceAt
+      ?"تعذر التحديث — يُستخدم آخر سعر محفوظ: "+new Date(state.priceAt).toLocaleString("ar-SA")
+      :"تعذر التحديث ولا يوجد سعر محفوظ.";
+    alert("تعذر تحديث GoldAPI. تحقق من المفتاح والاتصال بالإنترنت.");
+  }finally{
+    priceRefreshBusy=false;
+  }
+}
+
+function createEmptyDeal(){
+  const d={
+    no:id(),createdAt:Date.now(),air:0,buoy:0,decl:"",
+    density:null,buoy:0,buoys:[],densityReadings:[],densityQuality:"",densitySpread:null,tests:{},color:"",shape:"",notes:"",photos:[],
+    analysis:null,selectedTradeK:null,stage:0,current:0,carat:null,basePrice:null,
+    negSnapshot:null,negDiscountHistory:[],stage1Start:0,stage1End:0,stage2Start:0,stage2End:0,stage2OpenedAt:null,stage1LastPrice:null,
+    client:null,finalPrice:null,finalTotal:null,agreedAt:null,completed:false,quickDeal:false,quickPriceMode:false,processCost:0,decisionPrice:null,priceLocked:false,lastOffer:false,endReason:"",negotiationPausedAt:null
+  };
+  [21,18,14,10].forEach(k=>{if(state.tests[k]===false)d.tests[k]="";});
+  return d;
+}
+function newDeal(){
+  if(state.active){
+    if(confirm("توجد صفقة قيد التفاوض. هل تريد متابعتها؟")){resumeTrade();return;}
+    return;
+  }
+  state.active=createEmptyDeal();
+  saveState();
+  window.location.hash="test";
+  show("test");
+}
+function loadDealForm(){
+  const d=state.active;
+  if(!d)return;
+  document.getElementById("dealNo").textContent=d.no;
+  document.getElementById("air").value=d.air||"";
+  document.getElementById("buoy1").value=(d.buoys?.[0]||d.buoy||"");
+  document.getElementById("buoy2").value=d.buoys?.[1]||"";
+  document.getElementById("buoy3").value=d.buoys?.[2]||"";
+  document.getElementById("decl").value=d.decl||"";
+  document.getElementById("color").value=d.color||"";
+  document.getElementById("shape").value=d.shape||"";
+  document.getElementById("notes").value=d.notes||"";
+  renderTestOptions();
+  renderOtherTestState();
+  renderPhotoList();
+  calcDensity(false);
+}
+function renderTestOptions(){
+  const d=state.active||{tests:{}};
+  const enabled=state.tests||{};
+  const options=[21,18,14,10].filter(k=>enabled[k]!==false);
+  document.getElementById("testOptions").innerHTML=options.map(k=>{
+    const val=d.tests[k]||"";
+    return `<div class="testrow"><div><b>اختبار ${k}K</b><div class="muted">سجّل سلوك الأثر بعد وضع الحمض</div></div>
+    <select data-test="${k}">
+      <option value="">لم يُجر</option>
+      <option value="اختفى" ${val==="اختفى"?"selected":""}>اختفى الأثر</option>
+      <option value="خف" ${val==="خف"?"selected":""}>خف الأثر</option>
+      <option value="بقي_تغير" ${val==="بقي_تغير"?"selected":""}>بقي مع تغير واضح</option>
+      <option value="بقي_بدون" ${val==="بقي_بدون"?"selected":""}>بقي كما هو</option>
+      <option value="غيرواضح" ${val==="غيرواضح"?"selected":""}>غير واضح</option>
+    </select></div>`;
+  }).join("")||'<div class="muted">لم يتم تفعيل اختبارات عيار من الإدارة.</div>';
+
+  document.querySelectorAll("[data-test]").forEach(s=>{
+    s.onchange=()=>{
+      if(!state.active)newDeal();
+      if(state.active){
+        const k=Number(s.dataset.test);
+        state.active.tests[k]=s.value;
+        saveState();
+      }
+    };
+  });
+}
+function renderOtherTestState(){
+  const color=document.getElementById("color");
+  const shape=document.getElementById("shape");
+  color.disabled=state.tests.color===false;
+  shape.disabled=state.tests.shape===false;
+  color.title=color.disabled?"تم تعطيل اختبار اللون من الإدارة":"";
+  shape.title=shape.disabled?"تم تعطيل اختبار الشكل والمظهر من الإدارة":"";
+}
+function nearestKaratFromDensity(density){
+  const n=finiteNumber(density,0);
+  if(!n || n<=0)return null;
+  let best=null,dist=Infinity;
+  KARATS.forEach(k=>{
+    const ed=EXPECTED_DENSITY[k];
+    const delta=Math.abs(ed-n);
+    if(delta<dist){dist=delta;best=k;}
+  });
+  return best;
+}
+function densityKaratText(density){
+  const k=nearestKaratFromDensity(density);
+  return k?`≈ ${k}K`:'—';
+}
+
+function calcDensity(persist=true){
+  if(!state.active)return;
+  const a=finiteNumber(document.getElementById("air").value,0);
+  const readings=["buoy1","buoy2","buoy3"].map(id=>finiteNumber(document.getElementById(id).value,0)).filter(v=>v>0);
+  const d=state.active;
+  d.air=a>0?a:0;
+  d.buoys=readings.slice(0,3);
+  d.buoy=readings[0]||0;
+  const valid=readings.filter(b=>a>0 && b>0 && b<a);
+  d.densityReadings=valid.map(b=>a/b);
+  if(valid.length){
+    const vals=d.densityReadings;
+    const avg=vals.reduce((x,y)=>x+y,0)/vals.length;
+    const min=Math.min(...vals),max=Math.max(...vals);
+    const spread=max-min;
+    d.density=avg;
+    d.densitySpread=spread;
+    if(vals.length===1){d.densityQuality="قراءة واحدة";document.getElementById("densityState").textContent="قراءة واحدة";}
+    else if(spread<=0.05){d.densityQuality="ممتازة";document.getElementById("densityState").textContent="ثبات ممتاز ✓";}
+    else if(spread<=0.15){d.densityQuality="جيدة";document.getElementById("densityState").textContent="ثبات جيد ✓";}
+    else if(spread<=0.30){d.densityQuality="مقبولة";document.getElementById("densityState").textContent="ثبات مقبول";}
+    else {d.densityQuality="غير مستقرة";document.getElementById("densityState").textContent="غير مستقرة ⚠️";}
+    document.getElementById("density").textContent=fmt(avg)+" جم/سم³";
+    const dk=document.getElementById("densityKarat");
+    if(dk)dk.textContent=densityKaratText(avg);
+    const q=document.getElementById("densityQuality");
+    q.className="status "+(d.densityQuality==="ممتازة"||d.densityQuality==="جيدة"?"density-good":d.densityQuality==="غير مستقرة"?"density-bad":"density-warn");
+    q.textContent=`عدد القراءات الصالحة: ${vals.length} • الفرق بين أعلى وأقل كثافة: ${fmt(spread,3)} • جودة القياس: ${d.densityQuality}`;
+  }else{
+    d.density=null;d.densityReadings=[];d.densitySpread=null;d.densityQuality="";
+    document.getElementById("density").textContent="—";
+    const dk=document.getElementById("densityKarat");
+    if(dk)dk.textContent="—";
+    document.getElementById("densityState").textContent=a>0 && readings.some(b=>b>=a)?"خطأ: قراءة الطفو يجب أن تكون أقل من الوزن":"غير مجراة";
+    const q=document.getElementById("densityQuality");q.className="status";q.textContent="أدخل قراءة واحدة صحيحة على الأقل.";
+  }
+  if(persist)saveState();
+}
+["air","buoy1","buoy2","buoy3"].forEach(x=>{
+  document.getElementById(x).addEventListener("input",()=>calcDensity(true));
+});
+["decl","color","shape","notes"].forEach(x=>{
+  document.getElementById(x).addEventListener("change",()=>{
+    if(!state.active)return;
+    state.active[x]=document.getElementById(x).value;
+    saveState();
+  });
+});
+document.getElementById("notes").addEventListener("input",()=>{
+  if(state.active){state.active.notes=document.getElementById("notes").value;saveState();}
+});
+
+function compressImage(file,maxSize=1400,quality=.78){
+  return new Promise((resolve,reject)=>{
+    if(!file.type.startsWith("image/")){reject(new Error("not image"));return;}
+    const reader=new FileReader();
+    reader.onerror=()=>reject(new Error("read failed"));
+    reader.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error("image decode failed"));
+      img.onload=()=>{
+        const scale=Math.min(1,maxSize/Math.max(img.width,img.height));
+        const canvas=document.createElement("canvas");
+        canvas.width=Math.max(1,Math.round(img.width*scale));
+        canvas.height=Math.max(1,Math.round(img.height*scale));
+        const ctx=canvas.getContext("2d");
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        canvas.toBlob(blob=>{
+          if(!blob){reject(new Error("compression failed"));return;}
+          const r2=new FileReader();
+          r2.onload=()=>resolve(r2.result);
+          r2.onerror=()=>reject(new Error("blob read failed"));
+          r2.readAsDataURL(blob);
+        },"image/jpeg",quality);
+      };
+      img.src=reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+document.getElementById("photos").addEventListener("change",async e=>{
+  if(!state.active)return;
+  const files=Array.from(e.target.files||[]).slice(0,2);
+  if(!files.length)return;
+  state.active.photos=[];
+  renderPhotoList();
+  for(const f of files){
+    try{
+      const data=await compressImage(f);
+      state.active.photos.push({name:f.name,data});
+      renderPhotoList();
+      saveState();
+    }catch(err){
+      console.warn("photo",err);
+      alert(`تعذر حفظ الصورة: ${f.name}`);
+    }
+  }
+  e.target.value="";
+});
+function renderPhotoList(){
+  const photos=state.active?.photos||[];
+  document.getElementById("photoList").textContent=
+    photos.length?`تم حفظ ${photos.length} صورة للصفقة (حد أقصى 4).`:"لا توجد صور";
+}
+
+/*
+  تفسير اختبارات العيار هنا محافظ:
+  - اختفى: العيار الفعلي أقل من عيار الحمض/الاختبار.
+  - بقي بدون تغيير: العيار الفعلي لا يقل عن عيار الاختبار.
+  - خف/بقي مع تغير: دليل تقريبي حول عيار الاختبار، وليس إثباتًا قطعيًا.
+*/
+function testCompatibility(candidate,k,result){
+  if(!result)return 0.5;
+  const diff=candidate-k;
+  if(result==="اختفى") return candidate<k ? 1 : 0;
+  if(result==="بقي_بدون") return candidate>=k ? 1 : 0;
+  if(result==="بقي_تغير") return Math.abs(diff)<=1 ? 1 : 0.25;
+  if(result==="خف") return diff<=0 && diff>=-2 ? 1 : (Math.abs(diff)<=2?0.55:0.15);
+  return 0.25;
+}
+function testEvidenceWeight(result){
+  // وضوح النتيجة: النتيجة الواضحة تؤثر أكثر، وغير الواضحة تؤثر بأقل وزن.
+  if(result==="بقي_بدون" || result==="اختفى") return 1;
+  if(result==="بقي_تغير") return 0.75;
+  if(result==="خف") return 0.65;
+  return 0.25;
+}
+function confidenceFromEvidence({densityPresent,testCount,strongTests,conflict,agreement}){
+  if(conflict)return "منخفضة";
+  const strong=strongTests*1.0 + Math.min(testCount-strongTests,2)*0.65 + (densityPresent?1.35:0);
+  if(agreement && strong>=3.0)return "عالية";
+  if(strong>=1.75)return "متوسطة";
+  return "منخفضة";
+}
+function runAnalysis(){
+  if(!state.active){newDeal();return;}
+  const d=state.active;
+  d.decl=document.getElementById("decl").value;
+  d.color=state.tests.color===false?"":document.getElementById("color").value;
+  d.shape=state.tests.shape===false?"":document.getElementById("shape").value;
+  d.notes=document.getElementById("notes").value;
+  calcDensity(false);
+
+  const candidates=KARATS.slice();
+  const scores={};candidates.forEach(k=>scores[k]=0);
+  const evidence=[];
+
+  if(d.density){
+    const nearest=candidates.reduce((best,k)=>
+      Math.abs(EXPECTED_DENSITY[k]-d.density)<Math.abs(EXPECTED_DENSITY[best]-d.density)?k:best,
+      candidates[0]);
+    const distance=Math.abs(EXPECTED_DENSITY[nearest]-d.density);
+    const score=Math.max(0,1-distance/2.5);
+    scores[nearest]+=score*4;
+    evidence.push({type:"كثافة",k:nearest,score:Number(score.toFixed(2)),distance:Number(distance.toFixed(2)),weight:1});
+  }
+
+  const testResults=[];
+  [21,18,14,10].forEach(k=>{
+    const v=d.tests[k];
+    if(!v)return;
+    const weight=testEvidenceWeight(v);
+    candidates.forEach(c=>{scores[c]+=testCompatibility(c,k,v)*2.5*weight;});
+    testResults.push({k,result:v,weight});
+    evidence.push({type:"اختبار",k,result:v,weight:Number(weight.toFixed(2))});
+  });
+
+  const ranked=candidates.slice().sort((a,b)=>scores[b]-scores[a]);
+  const predicted=ranked[0]||null;
+
+  // حدود الدعم من نتائج الأحماض: "بقي" يدعم العيار أو أعلى، و"اختفى" يعني أن العيار الفعلي أدنى من حمض الاختبار.
+  let lowerBound=10, upperBound=24, hasStrongBound=false;
+  [21,18,14,10].forEach(k=>{
+    const v=d.tests[k];
+    if(v==="بقي_بدون"){ lowerBound=Math.max(lowerBound,k); hasStrongBound=true; }
+    if(v==="اختفى"){ upperBound=Math.min(upperBound,k-1); hasStrongBound=true; }
+  });
+
+  let densityStrong=false;
+  if(d.density){
+    const densityEvidence=evidence.find(e=>e.type==="كثافة");
+    if(densityEvidence && densityEvidence.distance<=0.8){
+      lowerBound=Math.max(lowerBound,Math.min(densityEvidence.k,24));
+      densityStrong=true;
+    }
+  }
+  const minSupported=(hasStrongBound||densityStrong) && lowerBound<=upperBound ? lowerBound : null;
+
+  const densityK=evidence.find(e=>e.type==="كثافة")?.k||null;
+  let conflict=false;
+  for(const t of testResults){
+    const k=t.k,v=t.result;
+    if(v==="اختفى" && densityK>=k) conflict=true;
+    if(v==="بقي_بدون" && densityK<k) conflict=true;
+  }
+  if(hasStrongBound && lowerBound>upperBound)conflict=true;
+  if(d.decl){
+    const declared=Number(d.decl);
+    if(predicted && Math.abs(predicted-declared)>=4)conflict=true;
+  }
+
+  const densityAgreement=!densityK || !testResults.some(t=>
+    (t.result==="اختفى" && densityK>=t.k) ||
+    (t.result==="بقي_بدون" && densityK<t.k)
+  );
+  const strongTests=testResults.filter(t=>t.result==="اختفى"||t.result==="بقي_بدون").length;
+  const confidence=confidenceFromEvidence({
+    densityPresent:Boolean(d.density),
+    testCount:testResults.length,
+    strongTests,
+    conflict,
+    agreement:densityAgreement && !(d.decl && predicted && Math.abs(predicted-Number(d.decl))>=4)
+  });
+
+  d.analysis={
+    predicted,minSupported,confidence,conflict,evidence,
+    declared:d.decl?Number(d.decl):null,
+    colorUsed:Boolean(d.color),shapeUsed:Boolean(d.shape),
+    densityK,testResults:testResults.map(t=>({k:t.k,result:t.result,weight:t.weight})),
+    densityAgreement,densityQuality:d.densityQuality||"",densityReadings:d.densityReadings||[],densitySpread:d.densitySpread||null
+  };
+  saveState();
+  renderResult();
+  window.location.hash="result";
+  show("result");
+}
+
+function scoresForTrade(k,d){
+  if(!d)return NaN;
+  if(d.density || Object.keys(d.tests||{}).some(x=>d.tests[x]))return 1;
+  return NaN;
+}
+
+function renderResult(){
+  const d=state.active;
+  const box=document.getElementById("resultBox");
+  const toTrade=document.getElementById("toTrade");
+  if(!d?.analysis){
+    box.innerHTML='<div class="alert">أجرِ الاختبارات ثم اضغط تحليل النتيجة.</div>';
+    toTrade.classList.add("hidden");
+    return;
+  }
+  const a=d.analysis;
+  const confClass=a.confidence==="عالية"?"ok":a.confidence==="متوسطة"?"warn":"bad";
+  const testList=[21,18,14,10].filter(k=>d.tests[k]).map(k=>`✓ ${k}K: ${d.tests[k]}`).join(" • ");
+  const densityText=d.density?fmt(d.density)+" جم/سم³":"غير مجراة";
+  box.innerHTML=`
+    <div class="metrics">
+      <div class="metric"><span>أقل عيار تدعمه الأدلة</span><strong>${a.minSupported?a.minSupported+"K":"غير محدد"}</strong></div>
+      <div class="metric"><span>العيار المتوقع</span><strong>${a.predicted?a.predicted+"K":"غير محدد"}</strong></div>
+      <div class="metric"><span>الكثافة</span><strong>${densityText}</strong></div>
+      <div class="metric"><span>ثبات الكثافة</span><strong>${a.densityQuality||"—"}</strong></div>
+      <div class="metric"><span>الوزن</span><strong>${d.air?fmt(d.air)+" جم":"غير محدد"}</strong></div>
+    </div>
+    <div class="alert ${confClass}" style="margin-top:12px">قوة الأدلة: <b>${a.confidence}</b></div>
+    ${a.conflict?'<div class="alert bad" style="margin-top:10px">⚠️ يوجد تعارض بين بعض الأدلة. راجع القياس واختبار المحك قبل الاعتماد على النتيجة.</div>':""}
+    <div class="card" style="margin-top:12px">
+      <b>الأدلة المستخدمة</b>
+      <div class="muted" style="margin-top:6px">
+        ${d.density?"✓ الكثافة":"— الكثافة"} •
+        ${testList||"لا توجد اختبارات عيار"} •
+        ${d.color?"✓ اللون":"— اللون"} •
+        ${d.shape?"✓ الشكل/المظهر":"— الشكل/المظهر"}
+      </div>
+      ${a.densityK?`<div class="muted" style="margin-top:7px">أقرب عيار حسب الكثافة: <b>${a.densityK}K</b>${a.densityAgreement?" — متوافق مع نتائج المحك المدخلة":" — يوجد تعارض مع نتيجة محك واحدة أو أكثر"}</div>`:""}
+    </div>
+    <div class="alert" style="margin-top:10px">هذه النتيجة تقديرية للمساعدة في الفرز وليست إثباتًا مخبريًا لعيار الذهب.</div>`;
+  const selectable=KARATS.filter(k=>Number.isFinite(scoresForTrade(k,d)));
+  const select=document.getElementById("tradeKSelect");
+  const choice=document.getElementById("tradeChoice");
+  if(select){
+    select.innerHTML=selectable.map(k=>`<option value="${k}">${k}K${k===a.predicted?" — الأقرب حسب التحليل":""}${k===a.minSupported?" — أقل عيار تدعمه الأدلة":""}</option>`).join("");
+    if(a.predicted)select.value=String(a.predicted);
+  }
+  choice.classList.toggle("hidden",selectable.length===0);
+  toTrade.classList.toggle("hidden",selectable.length===0 || a.conflict);
+  if(a.conflict && selectable.length){
+    choice.classList.remove("hidden");
+    choice.querySelector(".muted").innerHTML="⚠️ يوجد تعارض بين الأدلة. يمكنك اختيار العيار الذي تريد التفاوض عليه بدل إعادة الاختبار. سيبقى التحذير محفوظًا في الصفقة.";
+  }
+}
+
+function validateNegotiation(n,base){
+  const b=finiteNumber(base,0);
+  const start=finiteNumber(n.startDiscount,-1);
+  const end1=finiteNumber(n.stage1DiscountEnd,-1);
+  const end2=finiteNumber(n.stage2DiscountEnd,-1);
+  const step=finiteNumber(n.step,0);
+  if(b<=0)return "لا يوجد سعر مرجعي صالح.";
+  if(start<0 || end1<0 || end2<0 || step<=0)return "أدخل خصومات وحدودًا غير سالبة، وخطوة أكبر من صفر.";
+  if(!(start>end1 && end1>end2))return "يجب أن يكون خصم البداية أكبر من حد المرحلة الأولى، وحد المرحلة الأولى أكبر من حد المرحلة الثانية.";
+  if(b-start<=0)return "خصم البداية أكبر من السعر المرجعي.";
+  return "";
+}
+function negotiationPrices(n,base){
+  const b=finiteNumber(base,0);
+  if(b<=0)return null;
+  const start=Math.max(0,finiteNumber(n.startDiscount,0));
+  const end1=Math.max(0,finiteNumber(n.stage1DiscountEnd,0));
+  const end2=Math.max(0,finiteNumber(n.stage2DiscountEnd,0));
+  return {
+    s1Start:b-start,
+    s1End:b-end1,
+    s2Start:b-end1,
+    s2End:b-end2,
+    startDiscount:start,
+    stage1DiscountEnd:end1,
+    stage2DiscountEnd:end2
+  };
+}
+function discountPercent(d,base){
+  const b=finiteNumber(base,0);
+  return b>0 ? (Math.max(0,finiteNumber(d,0))/b*100) : 0;
+}
+function startNegotiation(){
+  const d=state.active;
+  if(!d?.analysis){alert("أجرِ التحليل أولًا.");return;}
+  const selected=Number(document.getElementById("tradeKSelect")?.value||0);
+  const k=selected || d.analysis.minSupported || d.analysis.predicted;
+  if(!KARATS.includes(k)){alert("اختر عيارًا صالحًا للتفاوض.");return;}
+  const n=clone(state.neg[k]||makeDefaultNeg()[k]);
+  const base=effectivePrice(k);
+  if(!base){alert("لا يوجد سعر لهذا العيار. حدّث الأسعار من الرئيسية أولًا.");return;}
+  const err=validateNegotiation(n,base);
+  if(err){alert(`إعدادات التفاوض للعيار ${k}K غير صحيحة: ${err}`);return;}
+  const prices=negotiationPrices(n,base);
+  d.carat=k;
+  d.basePrice=base;
+  d.negSnapshot=n;
+  d.stage=1;
+  d.negHistory=[prices.s1Start];
+  d.negDiscountHistory=[prices.startDiscount];
+  d.negHistoryStageStart=0;
+  d.stage1Start=prices.s1Start;
+  d.current=prices.s1Start;
+  d.stage1End=prices.s1End;
+  d.stage2Start=prices.s2Start;
+  d.stage2End=prices.s2End;
+  d.stage2OpenedAt=null;
+  d.stage1LastPrice=d.current;
+  d.currentDiscount=prices.startDiscount;
+  saveState();
+  window.location.hash="trade";
+  renderTrade();
+  show("trade");
+}
+function renderTrade(){
+  const d=state.active;
+  if(!d || !d.carat)return;
+  const base=finiteNumber(d.basePrice,0);
+  const discount=Math.max(0,base-finiteNumber(d.current,0));
+  const n=d.negSnapshot||{};
+  const endDiscount=d.stage===1?finiteNumber(n.stage1DiscountEnd,0):finiteNumber(n.stage2DiscountEnd,0);
+  const step=Math.max(0.01,finiteNumber(n.step,5));
+  const nextDiscount=Math.max(endDiscount,discount-step);
+  const nextPrice=base-nextDiscount;
+  document.getElementById("tradeCarat").textContent=d.carat+"K";
+  const tradeWeight=document.getElementById("tradeWeight");
+  if(tradeWeight)tradeWeight.textContent=d.air>0?fmt(d.air)+" جم":"غير مسجل";
+  document.getElementById("tradePrice").textContent=fmt(d.current);
+  document.getElementById("tradeTotal").textContent=fmt(d.current*d.air)+" ريال";
+  const undoBtn=document.getElementById("undoTradeBtn");
+  if(undoBtn)undoBtn.disabled=!(Array.isArray(d.negHistory)&&d.negHistory.length>1);
+  const increaseBtn=document.getElementById("increaseTradeBtn");
+  if(increaseBtn){increaseBtn.classList.toggle("stage2",d.stage===2);increaseBtn.setAttribute("data-stage",d.stage===2?"2":"1");}
+  const canIncrease=discount> endDiscount+0.0000001;
+  if(increaseBtn){
+    increaseBtn.disabled=!canIncrease;
+    increaseBtn.textContent=canIncrease?"رفع السعر":"الحد الأعلى";
+    increaseBtn.setAttribute("aria-label",canIncrease?"رفع السعر":"وصل الحد الأعلى");
+  }
+  document.getElementById("privateStage").textContent=d.stage===1?"الأولى":"الثانية";
+  document.getElementById("privateBase").textContent=fmt(base)+" ريال";
+  document.getElementById("privateDiscount").textContent=fmt(discount)+" ريال";
+  document.getElementById("privatePercent").textContent=fmt(discountPercent(discount,base),2)+"%";
+  document.getElementById("privateNext").textContent=canIncrease?fmt(nextPrice)+" ريال":"—";
+  document.getElementById("privateLimit").textContent=fmt(base-endDiscount)+" ريال";
+  setupTradePrivateGesture();
+}
+let tradeActionBusy=false;
+function changeTrade(dir){
+  const d=state.active;
+  if(tradeActionBusy || !d?.negSnapshot || dir!==1)return;
+  tradeActionBusy=true;setTimeout(()=>tradeActionBusy=false,220);
+  const n=d.negSnapshot;
+  const base=finiteNumber(d.basePrice,0);
+  const discount=Math.max(0,base-finiteNumber(d.current,0));
+  const end1=finiteNumber(n.stage1DiscountEnd,0);
+  const end2=finiteNumber(n.stage2DiscountEnd,0);
+  const endDiscount=d.stage===1?end1:end2;
+  const step=Math.max(0.01,finiteNumber(n.step,5));
+  if(discount<=endDiscount+0.0000001)return;
+  const nextDiscount=Math.max(endDiscount,discount-step);
+  const nextPrice=base-nextDiscount;
+  if(!Array.isArray(d.negHistory))d.negHistory=[finiteNumber(d.current,0)];
+  if(!Array.isArray(d.negDiscountHistory))d.negDiscountHistory=[discount];
+  d.negHistory.push(nextPrice);
+  d.negDiscountHistory.push(nextDiscount);
+  d.current=nextPrice;
+  d.currentDiscount=nextDiscount;
+  if(d.stage===1)d.stage1LastPrice=d.current;
+  if(d.stage===1 && nextDiscount<=end1+0.0000001){
+    d.stage=2;
+    d.stage2OpenedAt=Date.now();
+    d.negHistoryStageStart=Math.max(0,d.negHistory.length-1);
+    d.stage2Start=d.current;
+  }
+  saveState();
+  renderTrade();
+}
+function undoTrade(){
+  const d=state.active;
+  if(!d || !Array.isArray(d.negHistory) || d.negHistory.length<=1)return;
+  d.negHistory.pop();
+  if(Array.isArray(d.negDiscountHistory))d.negDiscountHistory.pop();
+  d.current=d.negHistory[d.negHistory.length-1];
+  const base=finiteNumber(d.basePrice,0);
+  const discount=Math.max(0,base-finiteNumber(d.current,0));
+  d.currentDiscount=discount;
+  const end1=finiteNumber(d.negSnapshot?.stage1DiscountEnd,0);
+  d.stage=discount>end1+0.0000001?1:2;
+  if(d.stage===1){d.stage1LastPrice=d.current;d.stage2OpenedAt=null;}
+  saveState();
+  renderTrade();
+}
+let tradePrivateTimer=null;
+function hideTradePrivate(){
+  const el=document.getElementById("tradePrivate");
+  if(el)el.classList.add("hidden");
+  if(tradePrivateTimer){clearTimeout(tradePrivateTimer);tradePrivateTimer=null;}
+}
+function armTradePrivateAutoHide(){
+  if(tradePrivateTimer)clearTimeout(tradePrivateTimer);
+  tradePrivateTimer=setTimeout(hideTradePrivate,10000);
+}
+function base64urlToBytes(v){const s=v.replace(/-/g,"+").replace(/_/g,"/");const pad="=".repeat((4-s.length%4)%4);const raw=atob(s+pad);return Uint8Array.from(raw,c=>c.charCodeAt(0));}
+function bytesToBase64url(buf){const bytes=new Uint8Array(buf);let s="";bytes.forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/g,"");}
+async function registerBiometric(){
+  if(!window.PublicKeyCredential || !navigator.credentials){alert("المصادقة الحيوية غير متاحة في هذا المتصفح أو في طريقة فتح التطبيق. استخدم PIN الاحتياطي.");return;}
+  try{
+    const challenge=crypto.getRandomValues(new Uint8Array(32));
+    const userId=crypto.getRandomValues(new Uint8Array(16));
+    const cred=await navigator.credentials.create({publicKey:{challenge,rp:{name:"مساعد شراء الذهب",id:location.hostname},user:{id:userId,name:"gold-owner",displayName:"مالك التطبيق"},pubKeyCredParams:[{type:"public-key",alg:-7},{type:"public-key",alg:-257}],authenticatorSelection:{authenticatorAttachment:"platform",userVerification:"required",residentKey:"preferred"},timeout:60000,attestation:"none"}});
+    if(!cred)throw new Error("no credential");
+    state.biometric={id:bytesToBase64url(cred.rawId),createdAt:Date.now(),rpId:location.hostname};saveState();
+    const el=document.getElementById("biometricStatus");if(el)el.textContent="تم تفعيل المصادقة الحيوية على هذا الجهاز. سيظهر Face ID/المصادقة الحيوية عند فتح التحكم الخاص.";
+    alert("تم تفعيل Face ID/المصادقة الحيوية بنجاح.");
+  }catch(e){console.error("biometric register",e);alert("تعذر تفعيل Face ID هنا. تأكد أن التطبيق يعمل عبر HTTPS وأن الآيفون يدعم المصادقة الحيوية، ثم استخدم PIN الاحتياطي.");}
+}
+async function unlockTradePrivate(){
+  if(state.biometric?.id && window.PublicKeyCredential && navigator.credentials){
+    try{
+      const cred=await navigator.credentials.get({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),rpId:state.biometric.rpId||location.hostname,allowCredentials:[{type:"public-key",id:base64urlToBytes(state.biometric.id)}],userVerification:"required",timeout:20000}});
+      if(!cred)throw new Error("no credential");
+      document.getElementById("tradePrivate").classList.remove("hidden");armTradePrivateAutoHide();return;
+    }catch(e){console.warn("biometric get failed",e);}
+  }
+  const pin=prompt("Face ID غير متاح الآن. أدخل PIN التحكم الخاص");
+  if(pin===null)return;
+  if(String(pin)!==String(state.pin)){alert("PIN غير صحيح.");return;}
+  document.getElementById("tradePrivate").classList.remove("hidden");armTradePrivateAutoHide();
+}
+let tradePressTimer=null;
+function setupTradePrivateGesture(){
+  const el=document.getElementById("tradePrice");
+  if(!el || el.dataset.gestureReady)return;
+  el.dataset.gestureReady="1";
+  const start=()=>{tradePressTimer=setTimeout(()=>unlockTradePrivate(),800);};
+  const cancel=()=>{if(tradePressTimer){clearTimeout(tradePressTimer);tradePressTimer=null;}};
+  el.addEventListener("pointerdown",start);
+  ["pointerup","pointercancel","pointerleave"].forEach(ev=>el.addEventListener(ev,cancel));
+  el.addEventListener("click",()=>{if(document.getElementById("tradePrivate")?.classList.contains("hidden"))return;armTradePrivateAutoHide();});
+}
+
+document.addEventListener("visibilitychange",()=>{if(document.hidden)hideTradePrivate();});
+window.addEventListener("hashchange",()=>{if(location.hash.slice(1)!=="trade")hideTradePrivate();});
+
+function pauseTrade(){
+  saveState();
+  window.location.hash="home";
+  show("home");
+}
+function resumeTrade(){
+  if(!state.active){show("home");return;}
+  if(state.active.stage>=1 && state.active.carat){window.location.hash="trade";renderTrade();show("trade");}
+  else{window.location.hash="test";show("test");}
+}
+function cancelTrade(){
+  if(confirm("إلغاء الصفقة الحالية؟")){
+    state.active=null;
+    saveState();
+    window.location.hash="home";
+    show("home");
+  }
+}
+function agreeTrade(){
+  if(!state.active?.carat || !state.active.current){alert("لا توجد صفقة تفاوض صالحة.");return;}
+  loadClientForm();
+  window.location.hash="client";
+  show("client");
+}
+function loadClientForm(){
+  const c=state.active?.client||{};
+  document.getElementById("clientName").value=c.name||"";
+  document.getElementById("clientPhone").value=c.phone||"";
+  document.getElementById("clientNotes").value=c.notes||"";
+}
+function saveAgreedDeal(){
+  const d=state.active;
+  if(!d)return;
+  const client={
+    name:document.getElementById("clientName").value.trim(),
+    phone:document.getElementById("clientPhone").value.trim(),
+    notes:document.getElementById("clientNotes").value.trim()
+  };
+  if(!client.name){alert("أدخل اسم العميل.");return;}
+  if(!d.air || !d.current || !d.carat){alert("بيانات الصفقة غير مكتملة.");return;}
+  d.client=client;
+  d.finalPrice=d.current;
+  d.finalTotal=d.current*d.air;
+  d.agreedAt=Date.now();
+  d.completed=true;
+  state.deals.unshift(clone(d));
+  state.deals=state.deals.slice(0,500);
+  state.active=null;
+  saveState();
+  alert("تم حفظ الصفقة "+d.no);
+  window.location.hash="home";
+  show("home");
+}
+
+function calcAlloying(){
+  const w=finiteNumber(document.getElementById("alloyWeight").value,0);
+  const currentK=finiteNumber(document.getElementById("alloyCurrentK").value,0);
+  const targetK=finiteNumber(document.getElementById("alloyTargetK").value,0);
+  const cuPct=Math.min(100,Math.max(0,finiteNumber(document.getElementById("copperRatio").value,50)));
+  const box=document.getElementById("alloyResult");
+  if(!w||currentK<=0||targetK<=0){box.innerHTML='<div class="alert bad" style="grid-column:1/-1">أدخل الوزن والعيارين بشكل صحيح.</div>';return;}
+  if(targetK>=currentK){box.innerHTML='<div class="alert warn" style="grid-column:1/-1">هذه الحاسبة مخصصة لخفض العيار بإضافة معادن غير ذهبية. إذا كان المطلوب رفع العيار، نحتاج إضافة ذهب أعلى عيارًا بدل النحاس والفضة.</div>';return;}
+  const goldMass=w*(currentK/24);
+  const finalMass=goldMass/(targetK/24);
+  const add=finalMass-w;
+  const copper=add*(cuPct/100);
+  const silver=add-copper;
+  box.innerHTML=`<div class="metric"><span>إجمالي الوزن بعد الإضافة</span><strong>${fmt(finalMass)} جم</strong></div><div class="metric"><span>إجمالي المعادن المضافة</span><strong>${fmt(add)} جم</strong></div><div class="metric"><span>النحاس</span><strong>${fmt(copper)} جم</strong></div><div class="metric"><span>الفضة</span><strong>${fmt(silver)} جم</strong></div><div class="alert" style="grid-column:1/-1">الحساب يفترض عدم فقدان ذهب أثناء الخلط وأن النحاس والفضة المضافين لا يحتويان ذهبًا. راجع الوزن والعيار الفعليين بعد الخلط.</div>`;
+}
+
+function renderHome(){
+  renderPrices();
+  const box=document.getElementById("activeDealHome");
+  if(state.active){
+    box.classList.remove("hidden");
+    box.innerHTML=`🟡 توجد صفقة ${state.active.stage>=1?"قيد التفاوض":"قيد الاختبار"}: <b>${state.active.no}</b><br>
+      <button class="btn small" style="margin-top:8px" onclick="${state.active.stage>=1?"resumeTrade()":"navigate('test')"}">${state.active.stage>=1?"متابعة التفاوض":"متابعة الاختبار"}</button>`;
+  }else box.classList.add("hidden");
+}
+
+function unlockAdmin(){
+  const v=document.getElementById("pinInput").value;
+  if(v===state.pin){
+    adminUnlocked=true;
+    document.getElementById("pinGate").classList.add("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
+    renderAdmin();
+  }else alert("PIN غير صحيح");
+}
+function lockAdmin(){
+  adminUnlocked=false;
+  document.getElementById("pinGate").classList.remove("hidden");
+  document.getElementById("adminPanel").classList.add("hidden");
+  document.getElementById("pinInput").value="";
+}
+function renderAdmin(){
+  document.getElementById("apiKey").value=state.apiKey;
+  document.getElementById("adminTests").innerHTML=[21,18,14,10].map(k=>
+    `<div class="testrow"><span>اختبار ${k}K</span><input class="check" type="checkbox" data-def="${k}" ${state.tests[k]?"checked":""}></div>`
+  ).join("")+
+  `<div class="testrow"><span>اللون</span><input class="check" type="checkbox" data-def="color" ${state.tests.color?"checked":""}></div>
+   <div class="testrow"><span>الشكل والمظهر</span><input class="check" type="checkbox" data-def="shape" ${state.tests.shape?"checked":""}></div>`;
+  document.getElementById("dealCount").textContent=state.deals.length;
+  renderNegAdmin();
+  const bs=document.getElementById("biometricStatus"); if(bs)bs.textContent=state.biometric?.id?"المصادقة الحيوية مفعلة على هذا الجهاز. سيبقى PIN كخيار احتياطي.":"المصادقة الحيوية غير مفعلة. يمكنك تفعيلها من الزر أعلاه.";
+  document.querySelectorAll("#negAdmin [data-neg]").forEach(el=>el.addEventListener("input",updateNegPreviews));
+}
+function saveApiKey(){
+  state.apiKey=document.getElementById("apiKey").value.trim();
+  saveState();
+  alert("تم حفظ مفتاح GoldAPI");
+}
+function saveTestDefaults(){
+  document.querySelectorAll("[data-def]").forEach(x=>{
+    const key=x.dataset.def;
+    state.tests[key]=x.checked;
+    if(!x.checked && state.active?.tests)delete state.active.tests[key];
+    if(key==="color" && !x.checked && state.active)state.active.color="";
+    if(key==="shape" && !x.checked && state.active)state.active.shape="";
+  });
+  saveState();
+  renderTestOptions();
+  renderOtherTestState();
+  alert("تم حفظ الاختبارات الافتراضية");
+}
+function renderNegAdmin(){
+  const box=document.getElementById("negAdmin");
+  if(!box)return;
+  box.innerHTML=KARATS.map(k=>{
+    const n=state.neg[k]||makeDefaultNeg()[k];
+    const p=effectivePrice(k);
+    const end1=finiteNumber(n.stage1DiscountEnd,90);
+    const end2=finiteNumber(n.stage2DiscountEnd,70);
+    const start=finiteNumber(n.startDiscount,120);
+    const step=finiteNumber(n.step,5);
+    const prices=p?negotiationPrices(n,p):null;
+    return `<div class="card" data-neg-card="${k}">
+      <h3>${k}K</h3>
+      <label>السعر الحالي المرجعي</label>
+      <input value="${p?fmt(p):""}" readonly>
+      <div class="grid">
+        <div><label>خصم البداية (ريال/جم)</label><input data-neg="${k}" data-f="startDiscount" type="number" min="0" step=".01" value="${start}"></div>
+        <div><label>حد خصم المرحلة الأولى</label><input data-neg="${k}" data-f="stage1DiscountEnd" type="number" min="0" step=".01" value="${end1}"></div>
+        <div><label>حد خصم المرحلة الثانية</label><input data-neg="${k}" data-f="stage2DiscountEnd" type="number" min="0" step=".01" value="${end2}"></div>
+        <div><label>نقص الخصم في كل ضغطة</label><input data-neg="${k}" data-f="step" type="number" min=".01" step=".01" value="${step}"></div>
+      </div>
+      <div class="muted" data-preview="${k}" style="margin-top:8px">${p&&prices?`البداية: <b class="result-red">${fmt(prices.s1Start)}</b> • نهاية 1: <b class="result-red">${fmt(prices.s1End)}</b> • نهاية 2: <b class="result-red">${fmt(prices.s2End)}</b> ريال/جم`:'لا يوجد سعر مرجعي محفوظ لهذا العيار.'}</div>
+      <div class="muted" style="margin-top:6px">كل ضغطة: خصم ${fmt(step)} ريال أقل، أي سعر أعلى بالمقدار نفسه. المرحلة الثانية تبدأ تلقائيًا عند الوصول إلى حد المرحلة الأولى.</div>
+    </div>`;
+  }).join("");
+  document.querySelectorAll("[data-neg]").forEach(el=>el.addEventListener("input",updateNegPreviews));
+  updateNegPreviews();
+}
+function updateNegPreviews(){
+  document.querySelectorAll("[data-neg-card]").forEach(card=>{
+    const k=Number(card.dataset.negCard),p=effectivePrice(k);
+    const read=f=>finiteNumber(card.querySelector(`[data-f="${f}"]`)?.value,0);
+    const n={mode:"amount",startDiscount:read("startDiscount"),stage1DiscountEnd:read("stage1DiscountEnd"),stage2DiscountEnd:read("stage2DiscountEnd"),step:read("step")};
+    const preview=card.querySelector("[data-preview]");
+    if(!preview)return;
+    if(!p){preview.textContent="لا يوجد سعر سوق محفوظ لهذا العيار.";return;}
+    const prices=negotiationPrices(n,p);
+    const ok=Boolean(prices && prices.s1Start>0 && n.startDiscount>n.stage1DiscountEnd && n.stage1DiscountEnd>n.stage2DiscountEnd && n.step>0);
+    if(!prices){preview.textContent="تعذر حساب الأسعار.";return;}
+    const steps1=Math.ceil((n.startDiscount-n.stage1DiscountEnd)/Math.max(n.step,.01));
+    const steps2=Math.ceil((n.stage1DiscountEnd-n.stage2DiscountEnd)/Math.max(n.step,.01));
+    preview.innerHTML=`المرحلة 1: <b class="result-red">${fmt(prices.s1Start)}</b> → <b class="result-red">${fmt(prices.s1End)}</b> • المرحلة 2: <b class="result-red">${fmt(prices.s2Start)}</b> → <b class="result-red">${fmt(prices.s2End)}</b><br>عدد الزيادات التقريبي: ${steps1} + ${steps2}${ok?' ✓':' — راجع ترتيب الخصومات.'}`;
+  });
+}
+function saveNeg(){
+  const next=clone(state.neg);
+  let error="";
+  const pending={};
+  document.querySelectorAll("[data-neg]").forEach(x=>{
+    const k=Number(x.dataset.neg),f=x.dataset.f;
+    if(!pending[k])pending[k]={};
+    pending[k][f]=finiteNumber(x.value,0);
+  });
+  for(const k of KARATS){
+    const p=effectivePrice(k);
+    const cur=next[k]||makeDefaultNeg()[k];
+    const raw=pending[k]||{};
+    if(!p){error=`${k}K: لا يوجد سعر سوق محفوظ للتحقق من الإعدادات.`;break;}
+    const n={mode:"amount",startDiscount:finiteNumber(raw.startDiscount,cur.startDiscount),stage1DiscountEnd:finiteNumber(raw.stage1DiscountEnd,cur.stage1DiscountEnd),stage2DiscountEnd:finiteNumber(raw.stage2DiscountEnd,cur.stage2DiscountEnd),step:Math.max(.01,finiteNumber(raw.step,cur.step||5))};
+    const err=validateNegotiation(n,p);
+    if(err){error=`${k}K: ${err}`;break;}
+    next[k]=n;
+  }
+  if(error){alert(error);return;}
+  state.neg=next;
+  saveState();
+  renderNegAdmin();
+  alert("تم حفظ خطط التفاوض لكل العيارات.");
+}
+
+function changePin(){
+  const p=document.getElementById("newPin").value.trim();
+  if(!/^\d{4,8}$/.test(p)){alert("استخدم PIN من 4 إلى 8 أرقام.");return;}
+  state.pin=p;saveState();
+  document.getElementById("newPin").value="";
+  alert("تم تغيير PIN");
+}
+function backup(){
+  const safe=normalizeState(state);
+  // النسخة الاحتياطية للصفقات لا تحمل أسرار الجهاز.
+  safe.apiKey="";
+  safe.pin="";
+  const payload={version:3,exportedAt:Date.now(),app:"goldBuyer",state:safe};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  downloadBlob(blob,"gold-backup-"+new Date().toISOString().slice(0,10)+".json");
+}
+document.getElementById("restore").addEventListener("change",e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const x=JSON.parse(r.result);
+      const candidate=x&&x.app==="goldBuyer"&&x.state?x.state:x;
+      const normalized=normalizeState(candidate);
+      if(!Array.isArray(normalized.deals)||!normalized.prices)throw new Error("invalid");
+      // النسخ الجديدة لا تحتوي أسرار الجهاز؛ أبقِ أسرار هذا الجهاز كما هي.
+      normalized.apiKey=state.apiKey;
+      normalized.pin=state.pin;
+      if(!confirm("سيتم استبدال البيانات الحالية بالنسخة الاحتياطية. هل تريد المتابعة؟"))return;
+      state=normalized;
+      saveState();
+      alert("تمت الاستعادة بنجاح.");
+      location.reload();
+    }catch(err){
+      console.error("restore",err);
+      alert("النسخة الاحتياطية غير صالحة.");
+    }finally{
+      e.target.value="";
+    }
+  };
+  r.readAsText(f);
+});
+function csvEscape(v){
+  const s=String(v??"");
+  return /[",\r\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s;
+}
+function reportData(){
+  const d=state.active || state.deals[0] || null;
+  return d;
+}
+function renderOneDealReport(d){
+  if(!d)return '<div class="alert">لا توجد صفقة لعرض تقريرها.</div>';
+  const a=d.analysis||{};
+  const tests=[21,18,14,10].filter(k=>d.tests?.[k]).map(k=>`<tr><td>${k}K</td><td>${d.tests[k]}</td></tr>`).join('');
+  const hist=(d.negHistory||[]).map((v,i)=>`<tr><td>${i+1}</td><td>${fmt(v)}</td><td>${d.basePrice?fmt(d.basePrice-v):'—'}</td><td>${d.basePrice?fmt(discountPercent(d.basePrice-v,d.basePrice),2)+'%':'—'}</td></tr>`).join('');
+  return `<div class="report-sheet">
+    <div class="row"><div><h3>تقرير صفقة الذهب</h3><div class="muted">رقم الصفقة: ${d.no||'—'}</div></div><span class="badge">${d.completed?'مكتملة':'نشطة'}</span></div>
+    <div class="metrics" style="margin-top:12px"><div class="metric"><span>الوزن</span><strong>${d.air?fmt(d.air)+' جم':'—'}</strong></div><div class="metric"><span>الكثافة</span><strong>${d.density?fmt(d.density):'—'}</strong></div><div class="metric"><span>ثبات الكثافة</span><strong>${a.densityQuality||d.densityQuality||'—'}</strong></div><div class="metric"><span>العيار المختار</span><strong>${d.carat?d.carat+'K':(a.predicted?a.predicted+'K':'—')}</strong></div><div class="metric"><span>العيار بعد الصهر/التحليل</span><strong>${d.finalAssayK?d.finalAssayK+'K':'—'}</strong></div><div class="metric"><span>الوزن بعد الصهر</span><strong>${d.finalWeight?fmt(d.finalWeight)+' جم':'—'}</strong></div><div class="metric"><span>قوة الأدلة</span><strong>${a.confidence||'—'}</strong></div></div>
+    <div class="muted" style="margin-top:10px">تكلفة الشراء: ${d.purchaseCost?fmt(d.purchaseCost)+' ريال':'—'} • تكلفة الصهر: ${d.processCost?fmt(d.processCost)+' ريال':'—'} • تكلفة أخرى: ${d.otherCost?fmt(d.otherCost)+' ريال':'—'}</div>
+    <div class="muted" style="margin-top:10px">قراءات الكثافة: ${(d.densityReadings||[]).length?d.densityReadings.map(v=>fmt(v,3)).join(' • '):'—'}${d.densitySpread!=null?` • فرق القراءات: ${fmt(d.densitySpread,3)}`:''}</div>
+    <h3 style="margin-top:18px">نتائج المحك</h3><table style="width:100%;border-collapse:collapse"><tr><th style="text-align:right">الاختبار</th><th style="text-align:right">النتيجة</th></tr>${tests||'<tr><td colspan="2">لا توجد نتائج</td></tr>'}</table>
+    <h3 style="margin-top:18px">خطة ونتيجة التفاوض</h3>
+    <div class="muted">السعر المرجعي: ${d.basePrice?fmt(d.basePrice)+' ريال/جم':'—'} • السعر النهائي: ${d.finalPrice?fmt(d.finalPrice)+' ريال/جم':'—'} • الإجمالي: ${d.finalTotal?fmt(d.finalTotal)+' ريال':'—'}</div>
+    ${a.conflict?'<div class="alert bad" style="margin-top:10px">يوجد تعارض بين بعض الأدلة، وتم السماح باختيار العيار للتفاوض مع إبقاء التحذير.</div>':''}
+    <h3 style="margin-top:18px">سجل الأسعار</h3><table style="width:100%;border-collapse:collapse"><tr><th>الخطوة</th><th>السعر</th><th>الخصم</th><th>النسبة</th></tr>${hist||'<tr><td colspan="4">لا يوجد سجل تفاوض</td></tr>'}</table>
+    <div class="alert" style="margin-top:14px">التقرير توثيقي للمساعدة في اتخاذ القرار، وليس إثباتًا مخبريًا لعيار الذهب.</div>
+  </div>`;
+}
+function buildReport(){
+  const box=document.getElementById('reportBox');
+  const deals=document.getElementById('reportDeals');
+  if(box)box.innerHTML=renderOneDealReport(reportData());
+  if(deals){
+    deals.innerHTML=state.deals.length?state.deals.slice(0,50).map(d=>`<div class="listitem"><b>${d.no}</b> — ${d.carat||'—'}K — ${d.finalPrice?fmt(d.finalPrice)+' ريال/جم':'—'} <span class="badge">${d.agreedAt?new Date(d.agreedAt).toLocaleDateString('ar-SA'):''}</span></div>`).join(''):'<div class="muted">لا توجد عمليات محفوظة.</div>';
+  }
+}
+function downloadCurrentReport(){
+  const d=reportData();
+  if(!d){alert('لا توجد صفقة لإنشاء التقرير.');return;}
+  const html='<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><title>تقرير صفقة الذهب '+(d.no||'')+'</title><style>body{font-family:Arial,sans-serif;max-width:800px;margin:30px auto;padding:20px;line-height:1.7;color:#222}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;padding:8px;text-align:right}.box{padding:14px;border:1px solid #ddd;border-radius:12px;margin:12px 0}</style><h1>تقرير صفقة الذهب</h1>'+renderOneDealReport(d).replaceAll('class="','class="')+'</html>';
+  downloadBlob(new Blob([html],{type:'text/html;charset=utf-8'}),`gold-report-${d.no||Date.now()}.html`);
+}
+function printCurrentReport(){
+  const d=reportData(); if(!d){alert('لا توجد صفقة لإنشاء التقرير.');return;}
+  const w=window.open('','_blank'); if(!w){alert('اسمح للنوافذ المنبثقة من التطبيق ثم أعد المحاولة.');return;}
+  w.document.write('<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><title>تقرير صفقة الذهب</title><style>body{font-family:Arial,sans-serif;padding:24px;line-height:1.7}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;padding:8px;text-align:right}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metric{border:1px solid #ddd;padding:10px}</style>'+renderOneDealReport(d)+'</html>');
+  w.document.close(); w.focus(); setTimeout(()=>w.print(),300);
+}
+function exportReport(){
+  navigate('report');
+  buildReport();
+}
+function downloadBlob(blob,name){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+setupTopNav();
+renderTestOptions();
+renderOtherTestState();
+renderHome();
+let initial=(window.location.hash||"#home").slice(1);
+if(!["home","test","result","trade","client","admin"].includes(initial))initial="home";
+if(["trade","client","result"].includes(initial) && !state.active)initial="home";
+show(initial);
+if(state.active?.stage>=1 && state.active.carat===null){
+  state.active.stage=0;
+  saveState();
+}
+
+
+/* =========================
+   V4 — مساعد القرار ودورات رأس المال
+   إضافات محافظة فوق V3، مع الحفاظ على واجهة التفاوض الأساسية.
+========================= */
+(function(){
+  state.v4 = state.v4 && typeof state.v4 === 'object' ? state.v4 : {};
+  state.v4.cycles = Array.isArray(state.v4.cycles) ? state.v4.cycles : [];
+  state.v4.activeCycleId = state.v4.activeCycleId || null;
+  state.v4.marketHistory = Array.isArray(state.v4.marketHistory) ? state.v4.marketHistory.slice(-500) : [];
+  state.v4.nextCycle = Number(state.v4.nextCycle||1);
+  function ensureDeal(d){
+    if(!d)return d;
+    d.photos=Array.isArray(d.photos)?d.photos.slice(0,2):[];
+    d.buoys=Array.isArray(d.buoys)?d.buoys.slice(0,3):[];
+    d.densityReadings=Array.isArray(d.densityReadings)?d.densityReadings:[];
+    d.densityQuality=d.densityQuality||'';
+    d.densitySpread=d.densitySpread==null?null:d.densitySpread;
+    d.cycleId=d.cycleId||null;
+    d.purchaseExtraCost=Number(d.purchaseExtraCost||0);
+    d.purchaseCost=Number(d.purchaseCost||0);
+    d.finalAssayK=d.finalAssayK?Number(d.finalAssayK):null;
+    d.finalWeight=d.finalWeight?Number(d.finalWeight):null;
+    d.salePrice=Number(d.salePrice||0);
+    d.saleTotal=Number(d.saleTotal||0);
+    d.saleAt=Number(d.saleAt||0)||null;
+    d.reviewNotes=typeof d.reviewNotes==='string'?d.reviewNotes:'';
+    d.historicalSnapshot=d.historicalSnapshot||null;
+    return d;
+  }
+  if(state.active)ensureDeal(state.active);
+  state.deals.forEach(ensureDeal);
+  state.v4.cycles.forEach(c=>{c.dealIds=Array.isArray(c.dealIds)?c.dealIds:[];c.status=c.status||'active';});
+  saveState();
+
+  function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function currentValue(d){
+    const k=Number(d.finalAssayK||d.carat||0);
+    const w=Number(d.finalWeight||d.air||0);
+    const p=effectivePrice(k);
+    return p>0&&w>0?p*w:0;
+  }
+  function cycleById(id){return state.v4.cycles.find(c=>c.id===id)||null;}
+  function activeCycle(){return cycleById(state.v4.activeCycleId);}
+  function ensureCycleForDeal(){
+    let c=activeCycle();
+    if(!c){
+      c={id:'C-'+String(state.v4.nextCycle++).padStart(3,'0'),name:'دورة '+String(state.v4.nextCycle-1).padStart(3,'0'),createdAt:Date.now(),initialCapital:0,dealIds:[],status:'active',saleTotal:0,notes:''};
+      state.v4.cycles.unshift(c);state.v4.activeCycleId=c.id;saveState();
+    }
+    return c;
+  }
+  function addCycle(){
+    const capital=Number(prompt('رأس مال الدورة الجديدة (اختياري):','0'))||0;
+    const name=prompt('اسم الدورة (اختياري):','دورة '+String(state.v4.nextCycle).padStart(3,'0'))||('دورة '+String(state.v4.nextCycle).padStart(3,'0'));
+    const c={id:'C-'+String(state.v4.nextCycle++).padStart(3,'0'),name,createdAt:Date.now(),initialCapital:capital,dealIds:[],status:'active',saleTotal:0,cashIn:0,capitalAdjustments:[],notes:''};
+    state.v4.cycles.unshift(c);state.v4.activeCycleId=c.id;saveState();renderV4();alert('تم بدء دورة جديدة بدون حذف أي صفقة سابقة.');
+  }
+  function selectCycle(id){if(cycleById(id)){state.v4.activeCycleId=id;saveState();renderV4();}}
+  function closeCycle(id){const c=cycleById(id);if(!c)return;const sale=Number(prompt('قيمة السيولة/البيع عند إغلاق الدورة (اختياري):',c.saleTotal||0))||0;c.saleTotal=sale;c.closedAt=Date.now();c.status='closed';saveState();renderV4();}
+
+  function addV4Pages(){
+    if(document.getElementById('v4dashboard'))return;
+    const nav=document.getElementById('topNav');
+    const a1=document.createElement('a');a1.href='#v4dashboard';a1.dataset.page='v4dashboard';a1.textContent='📊 التحليلات';nav.appendChild(a1);
+    const a2=document.createElement('a');a2.href='#v4cycles';a2.dataset.page='v4cycles';a2.textContent='🔄 الدورات';nav.appendChild(a2);
+    const make=(id,title,html)=>{const s=document.createElement('section');s.id=id;s.className='page';s.innerHTML='<h2>'+title+'</h2>'+html;const app=document.querySelector('.app'); if(!app) throw new Error('app container not found'); app.appendChild(s);return s;};
+    make('v4dashboard','التحليلات',`<div class="card"><div class="row"><h3>ملخصك المالي</h3><button class="btn small" onclick="renderV4()">تحديث</button></div><div id="v4Stats" class="metrics"></div></div><div class="card"><h3>قيمة الصفقات اليوم</h3><div id="v4DealsTable"></div></div><div class="card"><h3>العملاء</h3><input id="v4CustomerSearch" placeholder="ابحث باسم العميل أو الجوال"><div id="v4Customers"></div></div>`);
+    make('v4cycles','دورات رأس المال',`<div class="card"><div class="row"><h3>الدورة الحالية</h3><button class="btn primary" onclick="addCycle()">+ بدء دورة جديدة</button></div><div id="v4CycleCurrent"></div></div><div id="v4CycleList"></div>`);
+    make('v4review','مراجعة قبل الحفظ',`<div class="card"><div id="v4ReviewBox"></div><h3 style="margin-top:16px">بيانات العميل (اختيارية)</h3><label>اسم العميل</label><input id="reviewClientName"><label>رقم الجوال</label><input id="reviewClientPhone" inputmode="tel"><div id="reviewCustomerHint" class="status" style="margin-top:8px"></div><div class="grid"><div><label>تكاليف إضافية للشراء (ريال)</label><input id="reviewExtraCost" type="number" min="0" step="0.01" value="0"></div><div><label>الدورة</label><select id="reviewCycle"></select></div></div><label>ملاحظات الصفقة</label><textarea id="reviewNotes" placeholder="ملاحظاتك الخاصة قبل الحفظ"></textarea><button class="btn primary" onclick="saveV4Deal()">💾 حفظ الصفقة</button><button class="btn" onclick="navigate('trade')">العودة للتفاوض</button></div>`);
+    make('v4edit','تحديث نتيجة الصفقة',`<div class="card"><div id="v4EditHeader"></div><label>العيار بعد الصهر/التحليل</label><select id="postK"><option value="">لم يحدد بعد</option>${[24,22,21,19,18,16,14,10].map(k=>`<option value="${k}">${k}K</option>`).join('')}</select><label>الوزن بعد الصهر (جم)</label><input id="postWeight" type="number" min="0" step="0.01"><label>سعر البيع الفعلي للجرام (اختياري)</label><input id="postSalePrice" type="number" min="0" step="0.01"><label>ملاحظات النتيجة اللاحقة</label><textarea id="postNotes"></textarea><button class="btn primary" onclick="savePostSmelt()">حفظ النتيجة</button></div>`);
+  }
+  addV4Pages();
+
+  // Navigation extension while preserving V3 routing.
+  const oldShow=window.show;
+  window.show=function(id){
+    const ok=oldShow(id);
+    if(['v4dashboard','v4cycles','v4review','v4edit'].includes(id))renderV4();
+    if(id==='v4review')renderReview();
+    if(id==='v4edit')loadPostEdit();
+    return ok;
+  };
+  // التنقل العلوي أصبح بتفويض حدث واحد؛ يعمل أيضًا مع الروابط المضافة ديناميكيًا.
+
+  // Strengthen the evidence report without turning it into a decision-maker.
+  const oldRunAnalysis=window.runAnalysis;
+  window.runAnalysis=function(){
+    oldRunAnalysis();
+    const d=state.active;if(!d)return;
+    ensureDeal(d);
+    const a=d.analysis||{};
+    const densityQ=d.densityQuality||'غير مجراة';
+    const evidenceCount=Array.isArray(a.evidence)?a.evidence.length:0;
+    let evidenceQuality='ضعيفة';
+    if(evidenceCount>=3 && !a.conflict && ['ممتازة','جيدة'].includes(densityQ))evidenceQuality='جيدة جدًا';
+    else if(evidenceCount>=2 && !a.conflict)evidenceQuality='جيدة';
+    else if(evidenceCount>=1)evidenceQuality='محدودة';
+    a.densityQuality=densityQ;a.evidenceQuality=evidenceQuality;
+    a.assistantMessage=a.conflict?'تعارض موجود — القرار لك، ويمكن اختيار عيار التفاوض يدويًا.':(a.predicted?`الأدلة تميل إلى ${a.predicted}K — هذا ترجيح مساعد وليس قرار شراء.`:'البيانات غير كافية لترجيح واضح.');
+    d.analysis=a;saveState();
+    const box=document.getElementById('resultBox');
+    if(box){const note=document.createElement('div');note.className='alert '+(a.conflict?'warn':'ok');note.style.marginTop='10px';note.innerHTML=`<b>مساعد القرار:</b> ${esc(a.assistantMessage)}<br><span class="muted">جودة قياس الكثافة: ${esc(densityQ)} • جودة الأدلة: ${esc(evidenceQuality)}</span>`;box.appendChild(note);}
+  };
+
+  // Preserve a market snapshot whenever prices refresh.
+  const oldRefresh=window.refreshPrices;
+  window.refreshPrices=async function(){await oldRefresh();const snap={at:Date.now(),prices:clone(state.prices)};state.v4.marketHistory.push(snap);state.v4.marketHistory=state.v4.marketHistory.slice(-500);saveState();renderV4();};
+
+  // Review before saving, as requested.
+  window.agreeTrade=function(){
+    if(!state.active?.carat||!state.active.current){alert('لا توجد صفقة تفاوض صالحة.');return;}
+    ensureDeal(state.active);const c=state.active.client||{};
+    document.getElementById('reviewNotes').value=state.active.reviewNotes||c.notes||'';
+    document.getElementById('reviewExtraCost').value=state.active.purchaseExtraCost||0;document.getElementById('reviewClientName').value=c.name||'';document.getElementById('reviewClientPhone').value=c.phone||'';
+    const sel=document.getElementById('reviewCycle');sel.innerHTML=state.v4.cycles.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');
+    if(!state.v4.cycles.length){ensureCycleForDeal();sel.innerHTML=state.v4.cycles.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');}
+    sel.value=state.active.cycleId||state.v4.activeCycleId||state.v4.cycles[0]?.id||'';
+    window.location.hash='v4review';show('v4review');
+  };
+  window.renderReview=function(){
+    const d=state.active;if(!d)return;
+    ensureDeal(d);const base=Number(d.basePrice||0),finalP=Number(d.current||0),total=finalP*Number(d.air||0),discount=Math.max(0,base-finalP);
+    const c=d.client||{};
+    const negotiationSaving=Math.max(0,base-finalP)*Number(d.air||0);
+    document.getElementById('v4ReviewBox').innerHTML=`<div class="metrics"><div class="metric"><span>رقم الصفقة</span><strong>${esc(d.no)}</strong></div><div class="metric"><span>الوزن</span><strong>${fmt(d.air)} جم</strong></div><div class="metric"><span>العيار المرجح</span><strong>${d.analysis?.predicted?d.analysis.predicted+'K':'—'}</strong></div><div class="metric"><span>عيار التفاوض</span><strong>${d.carat}K</strong></div><div class="metric"><span>السعر المرجعي</span><strong>${fmt(base)} ريال/جم</strong></div><div class="metric"><span>السعر النهائي</span><strong>${fmt(finalP)} ريال/جم</strong></div><div class="metric"><span>إجمالي الصفقة</span><strong>${fmt(total)} ريال</strong></div><div class="metric"><span>خصم التفاوض</span><strong>${fmt(discount)} ريال/جم</strong></div><div class="metric"><span>فرق التفاوض على القطعة</span><strong>${fmt(negotiationSaving)} ريال</strong></div><div class="metric"><span>قيمة السوق الحالية</span><strong>${fmt(currentValue(d))} ريال</strong></div></div><div class="alert" style="margin-top:12px">الصفقة لن تحفظ حتى تضغط حفظ. القرار النهائي لك.</div><div class="muted" style="margin-top:8px">العميل: ${esc(c.name||'غير محدد')}</div>`;
+  };
+  window.saveV4Deal=function(){
+    const d=state.active;if(!d)return;
+    ensureDeal(d);const clientName=document.getElementById('reviewClientName').value.trim();const clientPhone=document.getElementById('reviewClientPhone').value.trim();const cycleId=document.getElementById('reviewCycle').value||null;const extra=Math.max(0,Number(document.getElementById('reviewExtraCost').value)||0);const notes=document.getElementById('reviewNotes').value||'';
+    d.client={...(d.client||{}),name:clientName,phone:clientPhone};d.purchaseExtraCost=extra;d.purchaseCost=Number(d.finalTotal||d.current*d.air||0)+extra;d.reviewNotes=notes;d.cycleId=cycleId||null;d.client=d.client||{};
+    d.historicalSnapshot={savedAt:Date.now(),basePrice:Number(d.basePrice||0),finalPrice:Number(d.finalPrice||d.current||0),finalTotal:Number(d.finalTotal||d.current*d.air||0),carat:Number(d.carat||0),weight:Number(d.air||0),marketPrices:clone(state.prices)};
+    d.finalPrice=d.current;d.finalTotal=d.current*d.air;d.agreedAt=d.agreedAt||Date.now();d.completed=true;
+    const c=cycleById(cycleId);if(c&&!c.dealIds.includes(d.no))c.dealIds.push(d.no);
+    state.deals.unshift(clone(d));state.deals=state.deals.slice(0,500);state.active=null;saveState();alert('تم حفظ الصفقة '+d.no+' في التقارير.');window.location.hash='home';show('home');
+  };
+
+  // Post-smelt result editor keeps the original purchase snapshot intact.
+  window.openPostEdit=function(no){state.v4.editDealNo=no;saveState();window.location.hash='v4edit';show('v4edit');};
+  window.loadPostEdit=function(){const d=state.deals.find(x=>x.no===state.v4.editDealNo);if(!d)return;document.getElementById('v4EditHeader').innerHTML=`<b>${esc(d.no)}</b> — شراء على ${d.carat||'—'}K بسعر ${d.finalPrice?fmt(d.finalPrice):'—'} ريال/جم`;document.getElementById('postK').value=d.finalAssayK||'';document.getElementById('postWeight').value=d.finalWeight||'';document.getElementById('postSalePrice').value=d.salePrice||'';document.getElementById('postNotes').value=d.postSmeltNotes||'';};
+  window.savePostSmelt=function(){const d=state.deals.find(x=>x.no===state.v4.editDealNo);if(!d)return;d.finalAssayK=Number(document.getElementById('postK').value)||null;d.finalWeight=Number(document.getElementById('postWeight').value)||null;d.salePrice=Number(document.getElementById('postSalePrice').value)||0;d.saleTotal=d.salePrice&&d.finalWeight?d.salePrice*d.finalWeight:0;d.saleAt=Date.now();d.postSmeltNotes=document.getElementById('postNotes').value||'';saveState();alert('تم تحديث نتيجة ما بعد الصهر مع بقاء بيانات الشراء الأصلية.');window.location.hash='v4dashboard';show('v4dashboard');};
+
+  function updateCustomerHint(){
+    const n=(document.getElementById('reviewClientName')?.value||'').trim().toLowerCase();
+    const box=document.getElementById('reviewCustomerHint'); if(!box)return;
+    if(!n){box.textContent='';return;}
+    const hits=state.deals.filter(d=>(d.client?.name||'').trim().toLowerCase()===n);
+    box.textContent=hits.length?`هذا العميل لديه ${hits.length} صفقة سابقة محفوظة. يمكنك مراجعتها من التحليلات.`:'لا توجد صفقة سابقة بهذا الاسم.';
+  }
+  document.getElementById('reviewClientName')?.addEventListener('input',updateCustomerHint);
+    window.renderV4=function(){
+    const deals=state.deals.map(ensureDeal);const today=new Date().toLocaleDateString('ar-SA');
+    const purchase=deals.reduce((s,d)=>s+Number(d.purchaseCost||d.finalTotal||0),0);const current=deals.reduce((s,d)=>s+currentValue(d),0);const realized=deals.reduce((s,d)=>s+Number(d.saleTotal||0),0);const costSold=deals.filter(d=>d.saleTotal).reduce((s,d)=>s+Number(d.purchaseCost||d.finalTotal||0),0);const realizedProfit=realized-costSold;
+    const stats=document.getElementById('v4Stats');if(stats)stats.innerHTML=`<div class="metric"><span>سعر السوق 24K</span><strong>${state.prices[24]?fmt(state.prices[24])+' ريال/جم':'—'}</strong></div><div class="metric"><span>عدد الصفقات</span><strong>${deals.length}</strong></div><div class="metric"><span>إجمالي تكلفة الشراء</span><strong>${fmt(purchase)} ريال</strong></div><div class="metric"><span>القيمة الحالية التقديرية</span><strong>${fmt(current)} ريال</strong></div><div class="metric"><span>الفرق الحالي غير المحقق</span><strong>${fmt(current-purchase)} ريال</strong></div><div class="metric"><span>البيع المحقق</span><strong>${fmt(realized)} ريال</strong></div><div class="metric"><span>الربح المحقق</span><strong>${fmt(realizedProfit)} ريال</strong></div>`;
+    const table=document.getElementById('v4DealsTable');if(table)table.innerHTML=deals.length?`<div class="listitem"><b>تاريخ</b> • <b>الصفقة</b> • <b>الشراء</b> • <b>القيمة الحالية</b> • <b>النتيجة</b></div>`+deals.slice(0,100).map(d=>`<div class="listitem"><b>${esc(d.no)}</b> — ${new Date(d.agreedAt||d.createdAt).toLocaleDateString('ar-SA')} — ${d.carat||'—'}K — شراء ${fmt(d.purchaseCost||d.finalTotal||0)} — حالي ${fmt(currentValue(d)||0)} <button class="btn small" onclick="openPostEdit('${esc(d.no)}')">تحديث بعد الصهر</button></div>`).join(''):'<div class="muted">لا توجد صفقات محفوظة.</div>';
+    const cust={};deals.forEach(d=>{const n=(d.client?.name||'').trim();if(!n)return;(cust[n]=cust[n]||{count:0,total:0,last:0,no:d.no}).count++;cust[n].total+=Number(d.finalTotal||0);cust[n].last=Math.max(cust[n].last,d.agreedAt||0);cust[n].no=d.no;});
+    const q=(document.getElementById('v4CustomerSearch')?.value||'').toLowerCase();const cbox=document.getElementById('v4Customers');if(cbox)cbox.innerHTML=Object.entries(cust).filter(([n])=>n.toLowerCase().includes(q)).map(([n,v])=>{const past=deals.filter(d=>(d.client?.name||'').trim()===n).slice(0,10);return `<div class="listitem"><b>${esc(n)}</b> — ${v.count} صفقة — ${fmt(v.total)} ريال — آخر تعامل ${v.last?new Date(v.last).toLocaleDateString('ar-SA'):'—'}<div class="muted" style="margin-top:5px">${past.map(d=>`${esc(d.no)}: ${d.carat||'—'}K / ${fmt(d.finalPrice||0)} ريال/جم`).join(' • ')}</div></div>`;}).join('')||'<div class="muted">لا يوجد عميل مطابق.</div>';
+    const cc=activeCycle();const cur=document.getElementById('v4CycleCurrent');if(cur)cur.innerHTML=cc?`<div class="metrics"><div class="metric"><span>الدورة</span><strong>${esc(cc.name)}</strong></div><div class="metric"><span>رأس المال</span><strong>${fmt(cc.initialCapital)} ريال</strong></div><div class="metric"><span>عدد الصفقات</span><strong>${cc.dealIds.length}</strong></div><div class="metric"><span>قيمة المبيعات المسجلة</span><strong>${fmt(cc.saleTotal||0)} ريال</strong></div></div><button class="btn" onclick="closeCycle('${esc(cc.id)}')">إغلاق الدورة وبدء مرحلة سيولة جديدة لاحقًا</button>`:'<div class="muted">لا توجد دورة نشطة. ابدأ دورة جديدة.</div>';
+    const list=document.getElementById('v4CycleList');if(list)list.innerHTML=state.v4.cycles.map(c=>`<div class="card"><div class="row"><b>${esc(c.name)}</b><span class="badge">${c.status==='closed'?'مغلقة':'نشطة'}</span></div><div class="muted">رأس المال: ${fmt(c.initialCapital)} • الصفقات: ${c.dealIds.length} • البيع: ${fmt(c.saleTotal||0)}</div><button class="btn small" onclick="selectCycle('${esc(c.id)}')">استخدام هذه الدورة</button></div>`).join('');
+  };
+  const search=document.getElementById('v4CustomerSearch');if(search)search.addEventListener('input',renderV4);
+  renderV4();
+})();
+
+
+/* =========================
+   V5 — التفاوض الآمن والمتين
+   محور النسخة: سرية التحكم + مرونة التفاوض + إصلاح الدورات.
+========================= */
+(function(){
+  const oldNormalizeDeal = window.normalizeDeal;
+  function ensureV5Deal(d){
+    if(!d)return d;
+    d.quickDeal=Boolean(d.quickDeal); d.quickPriceMode=Boolean(d.quickPriceMode);
+    d.processCost=Math.max(0,Number(d.processCost||0));
+    d.decisionPrice=Number(d.decisionPrice||0)||null;
+    d.priceLocked=Boolean(d.priceLocked); d.lastOffer=Boolean(d.lastOffer);
+    d.endReason=typeof d.endReason==='string'?d.endReason:'';
+    d.negotiationPausedAt=Number(d.negotiationPausedAt||0)||null;
+    return d;
+  }
+  if(state.active)ensureV5Deal(state.active); state.deals.forEach(ensureV5Deal);
+
+  // إصلاح V4: دوال الدورات كانت داخل IIFE وليست متاحة لأزرار onclick.
+  // نعيد تعريف واجهات آمنة على window، مع منع حذف الدورات السابقة.
+  function ensureV5CycleState(){
+    state.v4=state.v4&&typeof state.v4==='object'?state.v4:{};
+    state.v4.cycles=Array.isArray(state.v4.cycles)?state.v4.cycles:[];
+    // ضمان معرف مستقل وفريد لكل دورة حتى لا يشير زر دورة قديمة إلى آخر دورة.
+    const seen=new Set(); let maxNum=0;
+    state.v4.cycles.forEach((c,i)=>{
+      c.dealIds=Array.isArray(c.dealIds)?c.dealIds:[];
+      let id=String(c.id||'');
+      const m=id.match(/^C-(\d+)$/);
+      if(m)maxNum=Math.max(maxNum,Number(m[1]));
+      if(!id||seen.has(id)){
+        maxNum++; id='C-'+String(maxNum).padStart(3,'0'); c.id=id;
+      }
+      seen.add(id);
+    });
+    state.v4.nextCycle=Math.max(1,Number(state.v4.nextCycle||1),maxNum+1);
+    if(state.v4.activeCycleId && !seen.has(String(state.v4.activeCycleId)))state.v4.activeCycleId=state.v4.cycles[0]?.id||null;
+    if(!state.v4.activeCycleId && state.v4.cycles.length)state.v4.activeCycleId=state.v4.cycles[0].id;
+  }
+  function cycleById(id){ensureV5CycleState();return state.v4.cycles.find(c=>c.id===id)||null;}
+  window.addCycle=function(){
+    ensureV5CycleState();
+    const num=state.v4.nextCycle++;
+    const capitalRaw=prompt('رأس مال الدورة الجديدة (اختياري):','0');
+    if(capitalRaw===null){state.v4.nextCycle=Math.max(1,num);return;}
+    const capital=Math.max(0,Number(capitalRaw)||0);
+    const nameRaw=prompt('اسم الدورة (اختياري):','دورة '+String(num).padStart(3,'0'));
+    if(nameRaw===null){state.v4.nextCycle=Math.max(1,num);return;}
+    const name=nameRaw.trim()||('دورة '+String(num).padStart(3,'0'));
+    const c={id:'C-'+String(num).padStart(3,'0'),name,createdAt:Date.now(),initialCapital:capital,dealIds:[],status:'active',saleTotal:0,cashIn:0,capitalAdjustments:[],notes:''};
+    state.v4.cycles.unshift(c);state.v4.activeCycleId=c.id;saveState();
+    if(typeof renderV4==='function')renderV4();
+    alert('تم بدء '+name+' بدون حذف أو تعديل أي دورة سابقة.');
+  };
+  window.selectCycle=function(id){const c=cycleById(id);if(!c)return;state.v4.activeCycleId=c.id;saveState();if(typeof renderV4==='function')renderV4();};
+  window.closeCycle=function(id){const c=cycleById(id);if(!c)return;const saleRaw=prompt('قيمة السيولة/البيع عند إغلاق الدورة (اختياري):',String(c.saleTotal||0));if(saleRaw===null)return;c.saleTotal=Math.max(0,Number(saleRaw)||0);c.closedAt=Date.now();c.status='closed';saveState();if(typeof renderV4==='function')renderV4();};
+
+  // صفقة سريعة من صفحة الاختبار: لا نغير خطط العيارات الأصلية.
+  window.startQuickDeal=function(){
+    if(state.active){if(confirm('توجد صفقة حالية. هل تريد متابعتها؟')){resumeTrade();}return;}
+    const k=Number(prompt('أدخل عيار التفاوض (مثال 18):','18'));
+    if(!KARATS.includes(k)){alert('العيار غير صالح.');return;}
+    const weight=Math.max(0,Number(prompt('أدخل وزن القطعة بالجرام:',''))||0);
+    if(!weight){alert('أدخل وزنًا صحيحًا.');return;}
+    const base=effectivePrice(k);if(!base){alert('لا يوجد سعر مرجعي محفوظ لهذا العيار. حدّث السعر أولًا.');return;}
+    const mode=confirm('هل تريد استخدام خطة التفاوض المحفوظة لهذا العيار؟\nموافق = الخطة المحفوظة\nإلغاء = إدخال سعر بداية محدد لهذه الصفقة فقط');
+    const d=createEmptyDeal();d.air=weight;d.carat=k;d.basePrice=base;d.quickDeal=true;d.quickPriceMode=!mode;d.analysis={predicted:k,confidence:'غير مقيمة — صفقة سريعة',evidence:[],conflict:false,assistantMessage:'صفقة سريعة بناءً على اختيار المستخدم للعيار دون اختبارات.'};
+    if(mode){
+      const n=clone(state.neg[k]||makeDefaultNeg()[k]);const err=validateNegotiation(n,base);if(err){alert(err);return;}
+      const prices=negotiationPrices(n,base);Object.assign(d,{negSnapshot:n,stage:1,negHistory:[prices.s1Start],negDiscountHistory:[prices.startDiscount],stage1Start:prices.s1Start,current:prices.s1Start,stage1End:prices.s1End,stage2Start:prices.s2Start,stage2End:prices.s2End,currentDiscount:prices.startDiscount});
+    }else{
+      const startRaw=prompt('أدخل سعر بداية التفاوض لهذه الصفقة فقط:','');if(startRaw===null)return;const start=Math.max(0,Number(startRaw)||0);if(!start||start>base){alert('سعر البداية يجب أن يكون أكبر من صفر ولا يتجاوز السعر المرجعي.');return;}
+      const stepRaw=prompt('مقدار الزيادة في كل ضغطة (اختياري):','5');const step=Math.max(.01,Number(stepRaw)||5);
+      const n={mode:'manual',startDiscount:base-start,stage1DiscountEnd:0,stage2DiscountEnd:0,step};Object.assign(d,{negSnapshot:n,stage:1,negHistory:[start],negDiscountHistory:[base-start],stage1Start:start,current:start,stage1End:base,stage2Start:start,stage2End:base,currentDiscount:base-start});
+    }
+    state.active=ensureV5Deal(d);saveState();window.location.hash='trade';show('trade');
+  };
+
+  // دعم السعر اليدوي من التحكم الخاص، دون تعديل خطة العيار.
+  window.setTradeManualPrice=function(){
+    const d=state.active;if(!d)return;const raw=prompt('السعر الجديد لهذه الصفقة فقط (ريال/جم):',String(d.current||''));if(raw===null)return;const p=Number(raw);const base=Number(d.basePrice||0);if(!p||p<=0||p>base){alert('السعر غير صالح.');return;}d.current=p;d.negHistory=Array.isArray(d.negHistory)?d.negHistory.concat([p]):[p];d.negDiscountHistory=Array.isArray(d.negDiscountHistory)?d.negDiscountHistory.concat([base-p]):[base-p];d.currentDiscount=base-p;d.lastOffer=false;saveState();renderTrade();
+  };
+
+  // تثبيت السعر وآخر عرض.
+  window.toggleTradeLock=function(){const d=state.active;if(!d)return;d.priceLocked=!d.priceLocked;saveState();renderTrade();};
+  window.setTradeLastOffer=function(){const d=state.active;if(!d)return;d.lastOffer=true;d.priceLocked=true;saveState();renderTrade();};
+  const oldChange=window.changeTrade;
+  window.changeTrade=function(dir){const d=state.active;if(d?.priceLocked||d?.lastOffer){alert('السعر مثبت. افتح التحكم الخاص وألغِ التثبيت قبل رفع السعر.');return;}return oldChange(dir);};
+
+  // إيقاف/استكمال: لا تعتبر الصفقة منتهية ولا تنشئ سجلًا جديدًا.
+  const oldPause=window.pauseTrade;
+  window.pauseTrade=function(){if(state.active){state.active.negotiationPausedAt=Date.now();saveState();}hideTradePrivate();oldPause();};
+  const oldResume=window.resumeTrade;
+  window.resumeTrade=function(){if(state.active)state.active.negotiationPausedAt=null;oldResume();};
+
+  // زر اتفاق يعرض سبب الإنهاء في حالة الشراء أو الإغلاق، مع الاحتفاظ به داخليًا.
+  const oldAgree=window.agreeTrade;
+  window.agreeTrade=function(){
+    const d=state.active;if(!d?.carat||!d.current){alert('لا توجد صفقة تفاوض صالحة.');return;}
+    const box=document.getElementById('tradeEndReasonBox');if(box)box.classList.remove('hidden');
+    const reason=document.getElementById('tradeEndReason');
+    const proceed=confirm('هل تريد الانتقال إلى مراجعة الصفقة وحفظها؟');
+    if(!proceed)return;
+    d.endReason=reason?.value||'purchased';d.processCost=Math.max(0,Number(d.processCost||0));saveState();
+    oldAgree();
+  };
+
+  // إعدادات سرية للصفقة: تكلفة العملية وسعر القرار اختياريان ولا يظهران للزبون.
+  const oldRenderTrade=window.renderTrade;
+  window.renderTrade=function(){
+    oldRenderTrade();const d=state.active;if(!d)return;
+    const pc=document.getElementById('privateProcessCost');if(pc)pc.textContent=d.processCost?fmt(d.processCost)+' ريال':'—';
+    const dp=document.getElementById('privateDecisionPrice');if(dp)dp.textContent=d.decisionPrice?fmt(d.decisionPrice)+' ريال/جم':'—';
+    const lb=document.getElementById('tradeLockBtn');if(lb)lb.textContent=d.priceLocked?'🔓 إلغاء تثبيت السعر':'🔒 تثبيت السعر';
+    const lo=document.getElementById('tradeLastBtn');if(lo)lo.textContent=d.lastOffer?'🛑 آخر عرض مفعّل':'🛑 آخر عرض';
+    const priv=document.getElementById('tradePrivate');
+    if(priv && !priv.classList.contains('hidden'))armTradePrivateAutoHide();
+  };
+
+  // إضافة أدوات سرية بدون تغيير ما يراه الزبون.
+  function addPrivateTool(){
+    const box=document.getElementById('tradePrivate');if(!box||document.getElementById('v5PrivateTools'))return;
+    const wrap=document.createElement('div');wrap.id='v5PrivateTools';wrap.className='grid';wrap.style.marginTop='10px';
+    wrap.innerHTML='<button class="btn" onclick="setTradeManualPrice()">✎ سعر خاص لهذه الصفقة</button><button class="btn" onclick="setPrivateCosts()">🧮 تكلفة العملية</button>';
+    box.insertBefore(wrap,box.querySelector('.grid:last-child'));
+  }
+  window.setPrivateCosts=function(){const d=state.active;if(!d)return;const costRaw=prompt('تكلفة الصهر والتنقية المتوقعة لهذه القطعة (ريال):',String(d.processCost||0));if(costRaw===null)return;const cost=Math.max(0,Number(costRaw)||0);const decRaw=prompt('سعر القرار الداخلي اختياري (ريال/جم):',d.decisionPrice||'');d.processCost=cost;d.decisionPrice=decRaw===null?d.decisionPrice:(Number(decRaw)||null);saveState();renderTrade();};
+  addPrivateTool();
+  saveState();
+})();
+
+
+/* =========================
+   V5-GOLD — مراجعة نهائية
+   إصلاح الحالات + صفقات متوازية + دورة مالية + تكاليف الإدارة
+========================= */
+(function(){
+  // Helpers محلية لهذه الطبقة حتى لا تعتمد على دوال داخل IIFE آخر.
+  const esc = v => String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]));
+  const cycleById = id => (state.v4?.cycles||[]).find(c=>c.id===id)||null;
+  const smeltRateForK = k => {
+    const raw=state.v4?.smeltCostByK?.[Number(k)];
+    const v=Number(raw);
+    return raw!==undefined && Number.isFinite(v) && v>0 ? v : Number(state.v4?.smeltCostPerGram||0);
+  };
+  const smeltCostForDeal = d => Math.max(0,smeltRateForK(d?.carat||0))*Math.max(0,Number(d?.air||0));
+  const cycleStats = c => {
+    const deals=(state.deals||[]).filter(d=>d.cycleId===c.id);
+    const adjustments=Array.isArray(c.capitalAdjustments)?c.capitalAdjustments:[];
+    const addedCapital=adjustments.reduce((s,a)=>s+Math.max(0,Number(a.amount)||0),0);
+    const reducedCapital=adjustments.reduce((s,a)=>s+Math.max(0,-Number(a.amount)||0),0);
+    const capital=Math.max(0,Number(c.initialCapital||0)+adjustments.reduce((s,a)=>s+(Number(a.amount)||0),0));
+    const spent=deals.reduce((s,d)=>s+Number(d.purchaseCost||d.finalTotal||0),0);
+    const weight=deals.reduce((s,d)=>s+Number(d.finalWeight||d.air||0),0);
+    const current=deals.reduce((s,d)=>{const k=Number(d.finalAssayK||d.carat||0),w=Number(d.finalWeight||d.air||0),p=effectivePrice(k);return s+(p>0&&w>0?p*w:0);},0);
+    const sold=deals.reduce((s,d)=>s+Number(d.saleTotal||0),0);
+    const cashIn=Math.max(0,Number(c.cashIn||0));
+    const remaining=capital-spent+sold+cashIn;
+    return {deals,adjustments,capital,addedCapital,reducedCapital,spent,weight,current,sold,cashIn,remaining};
+  };
+  window.addCapitalAdjustment=function(id){
+    const c=cycleById(id); if(!c)return;
+    const raw=prompt('مقدار تعديل رأس المال: استخدم رقمًا موجبًا للزيادة وسالبًا للنقص','0');
+    if(raw===null)return;
+    const amount=Number(raw);
+    if(!Number.isFinite(amount)||amount===0){alert('أدخل قيمة صحيحة غير صفرية.');return;}
+    const reason=prompt('سبب التعديل (اختياري):','')||'';
+    c.capitalAdjustments=Array.isArray(c.capitalAdjustments)?c.capitalAdjustments:[];
+    c.capitalAdjustments.push({amount,reason,at:Date.now()});
+    saveState(); if(typeof renderV4==='function')renderV4();
+  };
+  window.closeCycle=function(id){
+    const c=cycleById(id); if(!c)return;
+    const pending=(state.pendingTrades||[]).filter(d=>d && !d.completed && d.cycleId===c.id && (Number(d.air||0)>0 || Number(d.current||0)>0 || Number(d.carat||0)>0));
+    if(pending.length){alert('لا يمكن إغلاق الدورة الآن لأن لديها صفقة غير مكتملة. أكملها أو ألغها أولًا.');return;}
+    const s=cycleStats(c);
+    const raw=prompt('السيولة الناتجة من بيع/تصفية الدورة عند الإغلاق (اختياري):',String(c.closingCashIn||0));
+    if(raw===null)return;
+    const cash=Math.max(0,Number(raw)||0);
+    c.closingCashIn=cash; c.cashIn=Number(c.cashIn||0)+cash; c.closedAt=Date.now(); c.status='closed';
+    saveState();
+    // بعد الإغلاق لا نحذف الدورة؛ تبقى مرجعًا تاريخيًا، ويبدأ المستخدم دورة جديدة للسيولة الجديدة.
+    const next=prompt('هل تريد بدء دورة جديدة بهذه السيولة الآن؟ اكتب اسمًا أو اتركه فارغًا لاسم تلقائي.','');
+    if(next!==null){
+      const num=Math.max(1,Number(state.v4.nextCycle||1)); state.v4.nextCycle=num+1;
+      const name=next.trim()||('دورة '+String(num).padStart(3,'0'));
+      const nc={id:'C-'+String(num).padStart(3,'0'),name,createdAt:Date.now(),initialCapital:cash,dealIds:[],status:'active',saleTotal:0,cashIn:0,notes:'',capitalAdjustments:[]};
+      state.v4.cycles.unshift(nc); state.v4.activeCycleId=nc.id;
+    }
+    saveState(); if(typeof renderV4==='function')renderV4();
+  };
+
+  const _saveState = window.saveState;
+  const _renderHome = window.renderHome;
+  const _newDeal = window.newDeal;
+  const _resumeTrade = window.resumeTrade;
+  const _startQuickDeal = window.startQuickDeal;
+  const _saveAgreedDeal = window.saveAgreedDeal;
+  const _saveV4Deal = window.saveV4Deal;
+  const _renderAdmin = window.renderAdmin;
+  const _renderV4 = window.renderV4;
+
+  const GOLD_KEY = 'goldBuyer_v5gold_marker';
+  function hasRealProgress(d){
+    if(!d || d.completed)return false;
+    return Number(d.air||0)>0 || Number(d.buoy||0)>0 || (Array.isArray(d.buoys)&&d.buoys.some(v=>Number(v)>0)) ||
+      Number(d.density||0)>0 || Object.values(d.tests||{}).some(v=>String(v||'').trim()!=='') ||
+      Boolean(d.decl) || Boolean(d.color) || Boolean(d.shape) || Boolean(d.notes) ||
+      (Array.isArray(d.photos)&&d.photos.length>0) || Number(d.carat||0)>0 || Number(d.basePrice||0)>0 ||
+      Number(d.stage||0)>0 || Number(d.current||0)>0 || Boolean(d.quickDeal);
+  }
+  state.pendingTrades = Array.isArray(state.pendingTrades) ? state.pendingTrades : [];
+  state.pendingTrades = state.pendingTrades.map(d=>ensureGoldDeal(d)).filter(d=>d && (d.completed || hasRealProgress(d)));
+  if(state.active) ensureGoldDeal(state.active);
+  // إزالة الصفقة الوهمية التي كانت تظهر كـ«قيد الاختبار» بلا أي بيانات فعلية.
+  if(state.active && !hasRealProgress(state.active)){
+    state.active=null;
+  }
+  if(state.active && !state.pendingTrades.some(x=>x.no===state.active.no)) state.pendingTrades.push(clone(state.active));
+  // إزالة التكرار مع الحفاظ على أحدث نسخة
+  const map=new Map(); state.pendingTrades.forEach(d=>map.set(d.no,d)); state.pendingTrades=[...map.values()];
+
+  function ensureGoldDeal(d){
+    if(!d)return null;
+    d.status = d.completed ? 'completed' : (d.negotiationPausedAt ? 'paused' : (d.stage>=1 ? 'negotiating' : 'testing'));
+    d.completed=Boolean(d.completed);
+    d.endReason=typeof d.endReason==='string'?d.endReason:'';
+    d.quickDeal=Boolean(d.quickDeal);
+    d.quickPriceMode=Boolean(d.quickPriceMode);
+    d.processCost=Math.max(0,Number(d.processCost||0));
+    d.otherCost=Math.max(0,Number(d.otherCost||d.purchaseOtherCost||0));
+    d.decisionPrice=Number(d.decisionPrice||0)||null;
+    d.priceLocked=Boolean(d.priceLocked); d.lastOffer=Boolean(d.lastOffer);
+    d.cycleId=d.cycleId||null;
+    return d;
+  }
+  function pendingIndex(no){return state.pendingTrades.findIndex(d=>d.no===no);}
+  function syncPending(d){
+    if(!d)return;
+    ensureGoldDeal(d);
+    const i=pendingIndex(d.no);
+    const real=hasRealProgress(d);
+    if(!real && !d.completed){
+      if(i>=0)state.pendingTrades.splice(i,1);
+      return;
+    }
+    if(i<0)state.pendingTrades.push(clone(d));
+    else state.pendingTrades[i]=clone(d);
+  }
+  function removePending(no){state.pendingTrades=state.pendingTrades.filter(d=>d.no!==no);}
+  function selectPending(no){
+    const d=state.pendingTrades.find(x=>x.no===no); if(!d)return false;
+    state.active=clone(d); ensureGoldDeal(state.active); syncPending(state.active); _saveState(); return true;
+  }
+  function setActiveForNew(d){
+    if(state.active)syncPending(state.active);
+    state.active=ensureGoldDeal(d); _saveState();
+  }
+
+  // إصلاح الرقم العشري الطويل: أسعار الذهب تعرض كرقم صحيح، مع إبقاء الأوزان قابلة للكسور.
+  const _fmt=window.fmt;
+  window.fmtGoldPrice=v=>_fmt(v,0);
+
+  // السماح بعدة صفقات معلقة في الوقت نفسه.
+  window.newDeal=function(){
+    const d=createEmptyDeal();
+    setActiveForNew(d);
+    window.location.hash='test'; show('test');
+  };
+  window.resumeTrade=function(no){
+    const target=no || state.active?.no;
+    if(target && target!==state.active?.no) selectPending(target);
+    if(!state.active){show('home');return;}
+    ensureGoldDeal(state.active); syncPending(state.active); _saveState();
+    if(state.active.stage>=1 && state.active.carat){window.location.hash='trade';renderTrade();show('trade');}
+    else {window.location.hash='test';show('test');}
+  };
+  window.pauseTrade=function(){
+    if(!state.active)return;
+    state.active.negotiationPausedAt=Date.now(); ensureGoldDeal(state.active); syncPending(state.active); _saveState();
+    hideTradePrivate(); window.location.hash='home'; show('home'); renderHome();
+  };
+  window.cancelTrade=function(){
+    const no=state.active?.no; if(!no)return;
+    if(confirm('إلغاء هذه الصفقة فقط؟')){
+      removePending(no); state.active=null; _saveState(); window.location.hash='home'; show('home'); renderHome();
+    }
+  };
+
+  // الصفقة السريعة تصبح صفقة مستقلة حتى لو توجد صفقات أخرى معلقة.
+  window.startQuickDeal=function(){
+    const k=Number(prompt('أدخل عيار التفاوض (مثال 18):','18'));
+    if(!KARATS.includes(k)){alert('العيار غير صالح.');return;}
+    const weight=Math.max(0,Number(prompt('أدخل وزن القطعة بالجرام:',''))||0);
+    if(!weight){alert('أدخل وزنًا صحيحًا.');return;}
+    const base=effectivePrice(k); if(!base){alert('لا يوجد سعر مرجعي محفوظ لهذا العيار. حدّث السعر أولًا.');return;}
+    const mode=confirm('هل تريد استخدام خطة التفاوض المحفوظة لهذا العيار؟\nموافق = الخطة المحفوظة\nإلغاء = إدخال سعر بداية محدد لهذه الصفقة فقط');
+    const d=createEmptyDeal(); d.air=weight; d.carat=k; d.basePrice=base; d.quickDeal=true; d.quickPriceMode=!mode;
+    d.analysis={predicted:k,confidence:'غير مقيمة — صفقة سريعة',evidence:[],conflict:false,assistantMessage:'صفقة سريعة بناءً على اختيار المستخدم للعيار دون اختبارات.'};
+    if(mode){
+      const n=clone(state.neg[k]||makeDefaultNeg()[k]); const err=validateNegotiation(n,base); if(err){alert(err);return;}
+      const prices=negotiationPrices(n,base); Object.assign(d,{negSnapshot:n,stage:1,negHistory:[prices.s1Start],negDiscountHistory:[prices.startDiscount],stage1Start:prices.s1Start,current:prices.s1Start,stage1End:prices.s1End,stage2Start:prices.s2Start,stage2End:prices.s2End,currentDiscount:prices.startDiscount});
+    } else {
+      const startRaw=prompt('أدخل سعر بداية التفاوض لهذه الصفقة فقط:',''); if(startRaw===null)return;
+      const start=Math.max(0,Number(startRaw)||0); if(!start||start>base){alert('سعر البداية يجب أن يكون أكبر من صفر ولا يتجاوز السعر المرجعي.');return;}
+      const stepRaw=prompt('مقدار الزيادة في كل ضغطة (اختياري):','5'); const step=Math.max(.01,Number(stepRaw)||5);
+      const n={mode:'manual',startDiscount:base-start,stage1DiscountEnd:0,stage2DiscountEnd:0,step};
+      Object.assign(d,{negSnapshot:n,stage:1,negHistory:[start],negDiscountHistory:[base-start],stage1Start:start,current:start,stage1End:base,stage2Start:start,stage2End:base,currentDiscount:base-start});
+    }
+    setActiveForNew(d); window.location.hash='trade'; show('trade'); renderTrade();
+  };
+
+  // اختيار أي صفقة معلقة من الصفحة الرئيسية.
+  window.resumePendingTrade=function(no){resumeTrade(no);};
+
+  window.renderHome=function(){
+    _renderHome();
+    const box=document.getElementById('activeDealHome'); if(!box)return;
+    const pending=state.pendingTrades.map(ensureGoldDeal).filter(d=>!d.completed && hasRealProgress(d));
+    if(!pending.length){box.classList.add('hidden');return;}
+    box.classList.remove('hidden');
+    box.innerHTML='<div class="row"><b>🟡 الصفقات غير المكتملة ('+pending.length+')</b><span class="badge">كل صفقة مستقلة</span></div>'+pending.map(d=>{
+      const label=d.stage>=1?'قيد التفاوض':(d.negotiationPausedAt?'موقوفة':'قيد الاختبار');
+      return `<div class="listitem" style="margin-top:8px"><b>${esc(d.no)}</b> — ${label}${d.quickDeal?' • ⚡ سريعة':''}<br><span class="muted">${d.carat?d.carat+'K':''}${d.air?' • '+_fmt(d.air,2)+' جم':''}</span> <button class="btn small" style="margin-top:6px" onclick="resumePendingTrade('${esc(d.no)}')">متابعة</button></div>`;
+    }).join('');
+  };
+
+  // التقرير يختار صفقة محددة عند فتحها، ولا يعرض حالة قديمة.
+  window.openReportDeal=function(no){
+    const d=state.deals.find(x=>x.no===no)||state.pendingTrades.find(x=>x.no===no); if(!d)return;
+    state.reportDealNo=no; _saveState(); window.location.hash='report'; show('report'); buildReport();
+  };
+  window.reportData=function(){
+    const no=state.reportDealNo;
+    if(no){const d=state.deals.find(x=>x.no===no)||state.pendingTrades.find(x=>x.no===no);if(d)return d;}
+    return state.deals[0]||state.pendingTrades[0]||null;
+  };
+  const _renderOne=window.renderOneDealReport;
+  window.renderOneDealReport=function(d){
+    if(d)ensureGoldDeal(d);
+    return _renderOne(d);
+  };
+  function validSavedDeal(d){
+    return !!(d && d.no && (Number(d.air||0)>0 || Number(d.finalTotal||0)>0 || Number(d.finalPrice||0)>0 || d.completed));
+  }
+  window.buildReport=function(){
+    const box=document.getElementById('reportBox'), deals=document.getElementById('reportDeals');
+    const saved=state.deals.filter(validSavedDeal);
+    const d=reportData();
+    if(box)box.innerHTML=window.renderOneDealReport(d && validSavedDeal(d)?d:null);
+    if(deals)deals.innerHTML=saved.length?saved.slice(0,100).map(d=>`<div class="listitem"><b>${esc(d.no)}</b> — ${d.carat||'—'}K — ${d.finalPrice?_fmt(d.finalPrice,0)+' ريال/جم':'—'} <span class="badge">${d.completed?'مكتملة':'غير مكتملة'}</span> <button class="btn small" onclick="openReportDeal('${esc(d.no)}')">عرض</button></div>`).join(''):'<div class="muted">لا توجد عمليات محفوظة.</div>';
+  };
+
+  // إنهاء الصفقة: الحفظ النهائي يزيلها من قائمة المعلقات، ويربطها بالدورة، ويحدث كل الواجهات.
+  window.saveAgreedDeal=function(){
+    const d=state.active; if(!d)return;
+    const client={name:document.getElementById('clientName').value.trim(),phone:document.getElementById('clientPhone').value.trim(),notes:document.getElementById('clientNotes').value.trim()};
+    if(!client.name){alert('أدخل اسم العميل.');return;} if(!d.air||!d.current||!d.carat){alert('بيانات الصفقة غير مكتملة.');return;}
+    d.client=client; d.finalPrice=d.current; d.finalTotal=d.current*d.air; d.agreedAt=Date.now(); d.completed=true; d.status='completed';
+    d.endReason=d.endReason||'purchased';
+    d.processCost=Math.max(0,Number(d.processCost||0)); d.otherCost=Math.max(0,Number(d.otherCost||0));
+    d.purchaseCost=d.finalTotal+d.processCost+d.otherCost;
+    const c=cycleById(d.cycleId||state.v4?.activeCycleId); if(c){d.cycleId=c.id;if(!Array.isArray(c.dealIds))c.dealIds=[];if(!c.dealIds.includes(d.no))c.dealIds.push(d.no);c.spent=Number(c.spent||0)+d.purchaseCost;}
+    removePending(d.no); state.deals=state.deals.filter(x=>x.no!==d.no); state.deals.unshift(clone(d)); state.deals=state.deals.slice(0,500);
+    state.active=null; _saveState(); if(typeof renderV4==='function')renderV4(); renderHome();
+    alert('تم حفظ الصفقة '+d.no+' في التقارير.'); window.location.hash='home'; show('home');
+  };
+
+  // مسار الحفظ في مراجعة V4 هو المسار الأساسي الحالي.
+  window.saveV4Deal=function(){
+    const d=state.active;if(!d)return;
+    ensureGoldDeal(d);
+    const clientName=(document.getElementById('reviewClientName')?.value||'').trim(), clientPhone=(document.getElementById('reviewClientPhone')?.value||'').trim();
+    const cycleId=document.getElementById('reviewCycle')?.value||state.v4.activeCycleId||null;
+    const other=Math.max(0,Number(document.getElementById('reviewExtraCost')?.value)||0);
+    const notes=document.getElementById('reviewNotes')?.value||'';
+    d.client={...(d.client||{}),name:clientName,phone:clientPhone}; d.otherCost=other; d.reviewNotes=notes; d.cycleId=cycleId;
+    d.finalPrice=d.current; d.finalTotal=d.current*d.air; d.agreedAt=d.agreedAt||Date.now(); d.completed=true; d.status='completed'; d.endReason=d.endReason||'purchased';
+    d.purchaseCost=d.finalTotal+Number(d.processCost||0)+d.otherCost;
+    d.historicalSnapshot={savedAt:Date.now(),basePrice:Number(d.basePrice||0),finalPrice:d.finalPrice,finalTotal:d.finalTotal,carat:Number(d.carat||0),weight:Number(d.air||0),marketPrices:clone(state.prices)};
+    const c=cycleById(cycleId); if(c){if(!Array.isArray(c.dealIds))c.dealIds=[];if(!c.dealIds.includes(d.no))c.dealIds.push(d.no);c.spent=Number(c.spent||0)+d.purchaseCost;}
+    removePending(d.no); state.deals=state.deals.filter(x=>x.no!==d.no); state.deals.unshift(clone(d)); state.deals=state.deals.slice(0,500); state.active=null; _saveState();
+    window.location.hash='home';show('home');renderHome();if(typeof renderV4==='function')renderV4(); alert('تم حفظ الصفقة '+d.no+' في التقارير.');
+  };
+
+  // تكلفة الصهر ثابتة في الإدارة، والتكلفة الأخرى تبقى للصفقة.
+  state.v4=state.v4||{}; state.v4.smeltCostPerGram=Number(state.v4.smeltCostPerGram||0); state.v4.smeltCostByK=state.v4.smeltCostByK&&typeof state.v4.smeltCostByK==='object'?state.v4.smeltCostByK:{};
+  window.renderAdmin=function(){
+    _renderAdmin();
+    const panel=document.getElementById('adminPanel'); if(!panel)return;
+    if(!document.getElementById('v5GoldCosts')){
+      const card=document.createElement('div');card.id='v5GoldCosts';card.className='card';
+      card.innerHTML=`<h3>تكاليف التشغيل</h3><div class="muted">يمكن تحديد تكلفة الصهر لكل جرام حسب العيار. إذا تركت عيارًا بصفر فسيُستخدم السعر العام كاحتياط. هذه المعلومات داخلية ولا تظهر للزبون.</div><div class="grid" style="margin-top:10px">${KARATS.map(k=>`<div><label>${k}K — ريال/جم</label><input id="smeltK${k}" type="number" min="0" step="1" value="${_fmt(smeltRateForK(k),0)}"></div>`).join('')}</div><label style="margin-top:12px">السعر العام الاحتياطي — ريال/جم</label><input id="smeltCostPerGram" type="number" min="0" step="1" value="${_fmt(state.v4.smeltCostPerGram,0)}"><button class="btn" onclick="saveSmeltCost()">حفظ تكاليف الصهر</button>`;
+      panel.insertBefore(card,panel.firstChild);
+    }
+    const st=document.getElementById('biometricStatus'); if(st)st.textContent=state.biometric?.id?'المصادقة الحيوية مفعلة على هذا الجهاز. سيبقى PIN كخيار احتياطي.':'المصادقة الحيوية غير مفعلة.';
+  };
+  window.saveSmeltCost=function(){state.v4.smeltCostPerGram=Math.max(0,Number(document.getElementById('smeltCostPerGram')?.value)||0);state.v4.smeltCostByK={};KARATS.forEach(k=>{state.v4.smeltCostByK[k]=Math.max(0,Number(document.getElementById('smeltK'+k)?.value)||0);});_saveState();alert('تم حفظ تكاليف الصهر لكل عيار.');};
+
+  // التكاليف في الصفقة: الصهر يحسب تلقائيًا من إعداد الإدارة، والتكلفة الأخرى تدخل في المراجعة.
+  const _agree=window.agreeTrade;
+  window.agreeTrade=function(){
+    const d=state.active;if(!d)return;
+    d.processCost=smeltCostForDeal(d);
+    ensureGoldDeal(d);syncPending(d);_saveState();
+    _agree();
+  };
+
+  // منع كسور الأسعار الطويلة في شاشة التفاوض والمراجعة والتقرير.
+  const _renderTrade=window.renderTrade;
+  window.renderTrade=function(){_renderTrade();const d=state.active;if(!d)return;const weight=document.getElementById('tradeWeight');if(weight)weight.textContent=Number(d.air)>0?_fmt(d.air,2)+' جم':'غير مسجل';const el=document.getElementById('tradePrice');if(el)el.textContent=_fmt(d.current,0);const total=document.getElementById('tradeTotal');if(total)total.textContent=_fmt(d.current*d.air,0)+' ريال';};
+
+  // حسابات الدورة: الصرف، المتبقي، الوزن، والقيمة الحالية + تنبيه نقص السيولة.
+  function currentValueGold(d){const k=Number(d.finalAssayK||d.carat||0),w=Number(d.finalWeight||d.air||0),p=effectivePrice(k);return p>0&&w>0?p*w:0;}
+  window.renderV4=function(){
+    const deals=state.deals.map(ensureGoldDeal); const purchase=deals.reduce((s,d)=>s+Number(d.purchaseCost||d.finalTotal||0),0); const current=deals.reduce((s,d)=>s+currentValueGold(d),0); const realized=deals.reduce((s,d)=>s+Number(d.saleTotal||0),0); const costSold=deals.filter(d=>d.saleTotal).reduce((s,d)=>s+Number(d.purchaseCost||d.finalTotal||0),0);
+    const stats=document.getElementById('v4Stats'); if(stats)stats.innerHTML=`<div class="metric"><span>سعر السوق 24K</span><strong>${state.prices[24]?_fmt(state.prices[24],0)+' ريال/جم':'—'}</strong></div><div class="metric"><span>عدد الصفقات</span><strong>${deals.length}</strong></div><div class="metric"><span>إجمالي تكلفة الشراء</span><strong>${_fmt(purchase,0)} ريال</strong></div><div class="metric"><span>القيمة الحالية التقديرية</span><strong>${_fmt(current,0)} ريال</strong></div><div class="metric"><span>الفرق الحالي غير المحقق</span><strong>${_fmt(current-purchase,0)} ريال</strong></div><div class="metric"><span>البيع المحقق</span><strong>${_fmt(realized,0)} ريال</strong></div><div class="metric"><span>الربح المحقق</span><strong>${_fmt(realized-costSold,0)} ريال</strong></div>`;
+    const table=document.getElementById('v4DealsTable'); if(table)table.innerHTML=deals.length?deals.slice(0,100).map(d=>`<div class="listitem"><b>${esc(d.no)}</b> — ${new Date(d.agreedAt||d.createdAt).toLocaleDateString('ar-SA')} — ${d.carat||'—'}K — شراء ${_fmt(d.purchaseCost||d.finalTotal||0,0)} — حالي ${_fmt(currentValueGold(d),0)} <button class="btn small" onclick="openPostEdit('${esc(d.no)}')">تحديث بعد الصهر</button></div>`).join(''):'<div class="muted">لا توجد صفقات محفوظة.</div>';
+    const cc=(state.v4.cycles||[]).find(c=>c.id===state.v4.activeCycleId); const cur=document.getElementById('v4CycleCurrent');
+    if(cur)cur.innerHTML=cc?(()=>{const s=cycleStats(cc);const quick=s.remaining;return `<div class="metrics"><div class="metric"><span>الدورة</span><strong>${esc(cc.name)}</strong></div><div class="metric"><span>رأس مال البداية</span><strong>${_fmt(cc.initialCapital,0)} ريال</strong></div><div class="metric"><span>رأس المال التشغيلي</span><strong>${_fmt(s.capital,0)} ريال</strong></div><div class="metric"><span>المصروف</span><strong>${_fmt(s.spent,0)} ريال</strong></div><div class="metric"><span>السيولة المتبقية</span><strong>${_fmt(s.remaining,0)} ريال</strong></div><div class="metric"><span>عدد الصفقات</span><strong>${s.deals.length}</strong></div><div class="metric"><span>الذهب الموجود</span><strong>${_fmt(s.weight,2)} جم</strong></div><div class="metric"><span>القيمة الحالية</span><strong>${_fmt(s.current,0)} ريال</strong></div><div class="metric"><span>المبيعات</span><strong>${_fmt(s.sold,0)} ريال</strong></div></div><div class="grid" style="margin-top:10px"><button class="btn" onclick="addCapitalAdjustment('${esc(cc.id)}')">✎ تعديل رأس المال</button><button class="btn danger" onclick="closeCycle('${esc(cc.id)}')">إغلاق الدورة</button></div>`;})():'<div class="muted">لا توجد دورة نشطة. ابدأ دورة جديدة.</div>';
+    const list=document.getElementById('v4CycleList');if(list){list.innerHTML=(state.v4.cycles||[]).map(c=>{const s=cycleStats(c);const active=c.id===state.v4.activeCycleId;return `<div class="card" data-cycle-card="${esc(c.id)}" style="${active?'border-width:2px;':''}"><div class="row"><b>${esc(c.name)}</b><span class="badge">${active?'الدورة المختارة':(c.status==='closed'?'مغلقة':'نشطة')}</span></div><div class="muted">رأس المال التشغيلي: ${_fmt(s.capital,0)} • المصروف: ${_fmt(s.spent,0)} • المتبقي: ${_fmt(s.remaining,0)} • الصفقات: ${s.deals.length} • الذهب: ${_fmt(s.weight,2)} جم</div>${s.adjustments.length?`<div class="muted" style="margin-top:5px">تعديلات رأس المال: ${s.adjustments.map(a=>(Number(a.amount)>=0?'+':'')+_fmt(a.amount,0)).join(' • ')}</div>`:''}<button type="button" class="btn small" data-select-cycle="${esc(c.id)}">${active?'هذه الدورة مستخدمة':'استخدام هذه الدورة'}</button></div>`}).join('');}
+    // تحديث التذكير السريع في الصفحة الرئيسية
+    let quick=document.getElementById('v5QuickReminder');if(!quick){quick=document.createElement('div');quick.id='v5QuickReminder';quick.className='card';const home=document.getElementById('home');if(home)home.insertBefore(quick,home.firstChild);}
+    if(cc){const s=cycleStats(cc);quick.innerHTML=`<div class="row"><h3>⚡ تذكير سريع</h3><span class="badge">${esc(cc.name)}</span></div><div class="metrics"><div class="metric"><span>السيولة</span><strong>${_fmt(s.remaining,0)} ريال</strong></div><div class="metric"><span>الموجود</span><strong>${_fmt(s.current,0)} ريال</strong></div><div class="metric"><span>المصروف</span><strong>${_fmt(s.spent,0)} ريال</strong></div><div class="metric"><span>الذهب</span><strong>${_fmt(s.weight,2)} جم</strong></div></div>`;}else quick.innerHTML='<div class="muted">ابدأ دورة لرؤية التذكير السريع.</div>';
+  };
+
+  // المسار النهائي لزر «تم الاتفاق» — بدون سلاسل overrides حتى لا يتعطل بسبب دالة داخل نطاق آخر.
+  window.agreeTrade=function(){
+    const d=state.active;
+    if(!d || !d.carat || !d.current || !d.air){alert('بيانات الصفقة غير مكتملة.');return;}
+    ensureGoldDeal(d);
+    d.processCost=smeltCostForDeal(d);
+    const extra=Math.max(0,Number(d.otherCost||0));
+    const total=Number(d.current)*Number(d.air)+d.processCost+extra;
+    const c=cycleById(d.cycleId||state.v4.activeCycleId);
+    if(c){
+      const spent=state.deals.filter(x=>x.cycleId===c.id).reduce((sum,x)=>sum+Number(x.purchaseCost||x.finalTotal||0),0);
+      const remaining=Number(c.initialCapital||0)-spent+Number(c.saleTotal||0);
+      if(Number(c.initialCapital||0)>0 && total>remaining){
+        if(!confirm(`⚠️ السيولة المتبقية ${_fmt(remaining,0)} ريال، وقيمة الصفقة ${_fmt(total,0)} ريال. الفرق ${_fmt(total-remaining,0)} ريال.\nهل تريد المتابعة رغم نقص السيولة؟`))return;
+      }
+    }
+    const reason=document.getElementById('tradeEndReason');
+    d.endReason=reason?.value||d.endReason||'purchased';
+    syncPending(d);
+    if(!_saveState()){alert('تعذر حفظ الصفقة قبل الانتقال للمراجعة.');return;}
+    window.location.hash='v4review';
+    if(!show('v4review')){alert('تعذر فتح صفحة مراجعة الصفقة.');return;}
+    if(typeof renderReview==='function')renderReview();
+  };
+
+  // في شاشة المراجعة: إظهار تكلفة الصهر والتكلفة الأخرى وإجمالي التكلفة.
+  const _renderReview=window.renderReview;
+  window.renderReview=function(){
+    _renderReview(); const d=state.active;if(!d)return; const box=document.getElementById('v4ReviewBox');if(!box)return;
+    const smelt=smeltCostForDeal(d); d.processCost=smelt;
+    const other=Math.max(0,Number(d.otherCost||0)); const buy=Number(d.current||0)*Number(d.air||0); const total=buy+smelt+other;
+    const costBox=`<div id="goldCostBox"><div class="metrics" style="margin-top:10px"><div class="metric"><span>تكلفة الشراء</span><strong>${_fmt(buy,0)} ريال</strong></div><div class="metric"><span>تكلفة الصهر</span><strong>${_fmt(smelt,0)} ريال</strong></div><div class="metric"><span>تكلفة أخرى</span><strong>${_fmt(other,0)} ريال</strong></div><div class="metric"><span>إجمالي التكلفة</span><strong>${_fmt(total,0)} ريال</strong></div></div><label style="display:block;margin-top:12px">تكلفة أخرى لهذه الصفقة (ريال)</label><input id="goldOtherCost" type="number" min="0" step="1" value="${_fmt(other,0)}"><div class="alert" style="margin-top:10px">تكلفة الصهر محسوبة تلقائيًا من إعداد الإدارة: ${_fmt(smeltRateForK(d.carat),0)} ريال/جم للعيار ${esc(d.carat)}.</div></div>`;
+    const oldCost=box.querySelector('#goldCostBox'); if(oldCost)oldCost.remove(); box.insertAdjacentHTML('beforeend',costBox);
+    document.getElementById('goldOtherCost').oninput=e=>{d.otherCost=Math.max(0,Number(e.target.value)||0);d.processCost=smelt;syncPending(d);_saveState();};
+  };
+
+  // عند حفظ الصفقة من المراجعة، احسب التكلفة النهائية مرة أخرى من المصدر.
+  const _saveV4=window.saveV4Deal;
+  window.saveV4Deal=function(){
+    const d=state.active;if(!d)return;d.otherCost=Math.max(0,Number(document.getElementById('goldOtherCost')?.value ?? d.otherCost ?? 0));d.processCost=smeltCostForDeal(d);_saveV4();
+  };
+
+  // بعد أي نتيجة صهر، أعد الحسابات والتقارير فورًا.
+  const _post=window.savePostSmelt;
+  window.savePostSmelt=function(){_post();setTimeout(()=>{if(typeof renderV4==='function')renderV4();if(typeof buildReport==='function')buildReport();},0);};
+
+  // تبديل الدورات: تفويض حدث ثابت حتى لا تعتمد الأزرار على onclick داخل HTML المعاد رسمه.
+  // هذا يمنع مشكلة أن آخر دورة فقط تستجيب، ويجعل كل دورة تستخدم معرفها المستقل.
+  if(!window.__v5CycleDelegation){
+    window.__v5CycleDelegation=true;
+    document.addEventListener('click',function(ev){
+      const btn=ev.target.closest('#v4CycleList [data-select-cycle]');
+      if(!btn)return;
+      ev.preventDefault(); ev.stopPropagation();
+      const id=btn.getAttribute('data-select-cycle');
+      const cycles=Array.isArray(state.v4?.cycles)?state.v4.cycles:[];
+      const c=cycles.find(x=>String(x.id)===String(id));
+      if(!c){alert('تعذر العثور على الدورة المحددة.');return;}
+      state.v4.activeCycleId=c.id;
+      saveState();
+      if(typeof renderV4==='function')renderV4();
+    },true);
+  }
+
+  // تنظيف السجلات الفارغة التي قد تكون نتجت من النسخ السابقة، دون حذف أي صفقة فعلية.
+  state.deals=state.deals.filter(d=>d && d.no && (Number(d.air||0)>0 || Number(d.finalTotal||0)>0 || Number(d.finalPrice||0)>0 || d.completed));
+  state.pendingTrades=state.pendingTrades.filter(d=>d && d.no && (d.completed || hasRealProgress(d)));
+  // إذا أُعيد فتح V5-Gold، لا نترك active قديمًا بلا سجل معلق.
+  if(state.active && hasRealProgress(state.active)){ensureGoldDeal(state.active);syncPending(state.active);_saveState();}
+  else if(!state.active){_saveState();}
+  state.pendingTrades.forEach(ensureGoldDeal);
+  _saveState();
+  window.V5_GOLD=true; localStorage.setItem(GOLD_KEY,'1');
+  renderHome(); if(typeof renderV4==='function')renderV4();
+})();
+
+
+/* =========================
+   V6-1 — الربح المتوقع والوزن المكافئ 24K
+   لا يغيّر الربح الفعلي أو عمليات البيع؛ هذا الإصدار يضيف طبقة توقع مستقلة.
+========================= */
+(function(){
+  const oldRenderV4 = window.renderV4;
+  const oldLoadPostEdit = window.loadPostEdit;
+  const oldSavePostSmelt = window.savePostSmelt;
+
+  function v6num(v, fallback=0){
+    const n=Number(v);
+    return Number.isFinite(n)?n:fallback;
+  }
+  function v6Cost(d){
+    return Math.max(0, v6num(d.purchaseCost, v6num(d.finalTotal,0)+v6num(d.processCost,0)+v6num(d.otherCost,0)));
+  }
+  function v6Theoretical24(d){
+    const w=v6num(d.air,0), k=v6num(d.carat,0);
+    if(w<=0 || k<=0)return null;
+    return w*k/24;
+  }
+  function v6Expected(d){
+    const discount=d.expectedDiscount;
+    const market=v6num(state.prices?.[24],0);
+    const w24=v6Theoretical24(d);
+    if(discount===null || discount===undefined || discount==='' || !Number.isFinite(Number(discount)) || Number(discount)<0 || market<=0 || !w24 || w24<=0){
+      return {market,w24,discount:null,salePrice:null,saleValue:null,profit:null,cost:v6Cost(d)};
+    }
+    const dis=Math.max(0,Number(discount));
+    const salePrice=Math.max(0,market-dis);
+    const saleValue=salePrice*w24;
+    const cost=v6Cost(d);
+    return {market,w24,discount:dis,salePrice,saleValue,profit:saleValue-cost,cost};
+  }
+  function v6Ensure(d){
+    if(!d)return d;
+    if(d.expectedDiscount!==null && d.expectedDiscount!==undefined && d.expectedDiscount!=='')d.expectedDiscount=Math.max(0,v6num(d.expectedDiscount,0));
+    else d.expectedDiscount=null;
+    const e=v6Expected(d);
+    d.expectedMarket24=e.market>0?e.market:null;
+    d.theoretical24Weight=e.w24;
+    d.expectedSalePrice24=e.salePrice;
+    d.expectedSaleValue=e.saleValue;
+    d.expectedProfit=e.profit;
+    return d;
+  }
+  window.v6ExpectedForDeal=v6Expected;
+
+  window.loadPostEdit=function(){
+    if(typeof oldLoadPostEdit==='function')oldLoadPostEdit();
+    const d=state.deals.find(x=>x.no===state.v4.editDealNo);
+    if(!d)return;
+    v6Ensure(d);
+    const card=document.getElementById('v4edit');
+    if(!card)return;
+    let box=document.getElementById('v6ExpectedBox');
+    if(!box){
+      box=document.createElement('div');
+      box.id='v6ExpectedBox';
+      box.className='card';
+      box.style.marginTop='14px';
+      card.querySelector('.card')?.appendChild(box);
+    }
+    const e=v6Expected(d);
+    box.innerHTML=`<h3>🟡 الربح المتوقع</h3>
+      <div class="muted">يُحسب على أساس تحويل الوزن الأصلي إلى مكافئ عيار 24K، ثم سعر السوق الحالي 24K مطروحًا منه الخصم الذي تحدده لهذه الصفقة. لا يوجد خصم ثابت.</div>
+      <div class="metrics" style="margin-top:10px">
+        <div class="metric"><span>الوزن الأصلي</span><strong>${d.air?fmt(d.air)+' جم':'—'}</strong></div>
+        <div class="metric"><span>العيار عند الشراء</span><strong>${d.carat?d.carat+'K':'—'}</strong></div>
+        <div class="metric"><span>الوزن المكافئ 24K</span><strong>${e.w24?fmt(e.w24,2)+' جم':'—'}</strong></div>
+        <div class="metric"><span>سعر السوق 24K الآن</span><strong>${e.market?fmt(e.market,0)+' ريال/جم':'—'}</strong></div>
+      </div>
+      <label style="margin-top:12px">الخصم المتوقع من سعر السوق (ريال/جم)</label>
+      <input id="v6ExpectedDiscount" type="number" min="0" step="1" placeholder="مثال: 18" value="${e.discount===null?'':fmt(e.discount,0)}">
+      <div id="v6ExpectedCalc" class="metrics" style="margin-top:10px"></div>
+      <div id="v6ExpectedNote" class="alert" style="margin-top:10px"></div>
+      <button class="btn primary" type="button" id="v6SaveExpected">💾 حفظ الربح المتوقع</button>`;
+
+    function refresh(){
+      const raw=document.getElementById('v6ExpectedDiscount')?.value;
+      const has=raw!=='' && Number.isFinite(Number(raw)) && Number(raw)>=0;
+      d.expectedDiscount=has?Number(raw):null;
+      const x=v6Expected(d);
+      const calc=document.getElementById('v6ExpectedCalc');
+      const note=document.getElementById('v6ExpectedNote');
+      if(calc)calc.innerHTML=`<div class="metric"><span>سعر البيع المتوقع/جم</span><strong>${x.salePrice===null?'—':fmt(x.salePrice,0)+' ريال'}</strong></div><div class="metric"><span>قيمة البيع المتوقعة</span><strong>${x.saleValue===null?'—':fmt(x.saleValue,0)+' ريال'}</strong></div><div class="metric"><span>إجمالي التكلفة</span><strong>${fmt(x.cost,0)} ريال</strong></div><div class="metric"><span>الربح المتوقع</span><strong>${x.profit===null?'—':fmt(x.profit,0)+' ريال'}</strong></div>`;
+      if(note){
+        if(x.profit===null)note.textContent=x.market<=0?'لا يوجد سعر سوق 24K محفوظ حاليًا. حدّث السعر أولًا.':'أدخل الخصم المتوقع حتى يظهر الربح المتوقع.';
+        else note.textContent='هذا ربح متوقع فقط، ولا يتحول إلى ربح فعلي إلا بعد تسجيل عملية البيع الفعلية في مرحلة V6 التالية.';
+      }
+    }
+    document.getElementById('v6ExpectedDiscount')?.addEventListener('input',refresh);
+    document.getElementById('v6SaveExpected')?.addEventListener('click',()=>{
+      refresh();
+      v6Ensure(d);
+      saveState();
+      if(typeof renderV4==='function')renderV4();
+      alert(d.expectedProfit===null?'تم حفظ إعداد التوقع، لكن الربح لم يُحسب بعد.':'تم حفظ الربح المتوقع للصفقة.');
+    });
+    refresh();
+  };
+
+  window.savePostSmelt=function(){
+    if(typeof oldSavePostSmelt==='function')oldSavePostSmelt();
+    const d=state.deals.find(x=>x.no===state.v4.editDealNo);
+    if(d){v6Ensure(d);saveState();}
+    setTimeout(()=>{if(typeof window.renderV4==='function')window.renderV4();},0);
+  };
+
+  window.renderV4=function(){
+    if(typeof oldRenderV4==='function')oldRenderV4();
+    const deals=(state.deals||[]).filter(d=>d && d.no).map(v6Ensure);
+    deals.forEach(v6Ensure);
+    const expectedProfits=deals.filter(d=>d.expectedProfit!==null).reduce((s,d)=>s+Number(d.expectedProfit||0),0);
+    const expectedSales=deals.filter(d=>d.expectedSaleValue!==null).reduce((s,d)=>s+Number(d.expectedSaleValue||0),0);
+    const stats=document.getElementById('v6ExpectedStats');
+    if(stats){
+      stats.innerHTML=`<div class="metric"><span>قيمة البيع المتوقعة</span><strong>${fmt(expectedSales,0)} ريال</strong></div><div class="metric"><span>إجمالي الربح المتوقع</span><strong>${fmt(expectedProfits,0)} ريال</strong></div><div class="metric"><span>صفقات لها توقع</span><strong>${deals.filter(d=>d.expectedProfit!==null).length}</strong></div>`;
+    }
+    const table=document.getElementById('v6ExpectedTable');
+    if(table){
+      table.innerHTML=deals.length?`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;min-width:780px"><thead><tr><th>الصفقة</th><th>الوزن الأصلي</th><th>العيار</th><th>مكافئ 24K</th><th>السوق 24K</th><th>الخصم</th><th>سعر البيع المتوقع</th><th>قيمة البيع المتوقعة</th><th>الربح المتوقع</th><th>التفاصيل</th></tr></thead><tbody>${deals.slice(0,200).map(d=>{const e=v6Expected(d);return `<tr><td>${esc(d.no)}</td><td>${fmt(d.air||0)}</td><td>${d.carat?d.carat+'K':'—'}</td><td>${e.w24?fmt(e.w24,2):'—'}</td><td>${e.market?fmt(e.market,0):'—'}</td><td>${e.discount===null?'—':fmt(e.discount,0)}</td><td>${e.salePrice===null?'—':fmt(e.salePrice,0)}</td><td>${e.saleValue===null?'—':fmt(e.saleValue,0)}</td><td>${e.profit===null?'—':fmt(e.profit,0)}</td><td><button class="btn small" type="button" onclick="openPostEdit('${esc(d.no)}')">فتح الصفقة</button></td></tr>`;}).join('')}</tbody></table></div>`:'<div class="muted">لا توجد صفقات محفوظة.</div>';
+    }
+    saveState();
+  };
+
+  function injectV6Dashboard(){
+    const page=document.getElementById('v4dashboard');
+    if(!page || document.getElementById('v6ExpectedCard'))return;
+    const card=document.createElement('div');
+    card.id='v6ExpectedCard';card.className='card';
+    card.innerHTML='<div class="row"><h3>🟡 الربح المتوقع — V6-1</h3><span class="badge">قبل البيع</span></div><div id="v6ExpectedStats" class="metrics" style="margin-top:10px"></div><div id="v6ExpectedTable" style="margin-top:12px"></div><div class="alert" style="margin-top:12px">الوزن المكافئ 24K يحسب من الوزن الأصلي × العيار ÷ 24. الخصم متغير لكل صفقة. لا يوجد رقم خصم ثابت.</div>';
+    page.appendChild(card);
+  }
+  injectV6Dashboard();
+  window.addEventListener('hashchange',()=>{if(location.hash==='#v4dashboard'){injectV6Dashboard();setTimeout(()=>window.renderV4(),0);}});
+  window.V6_1=true;
+  setTimeout(()=>{injectV6Dashboard();if(typeof window.renderV4==='function')window.renderV4();},0);
+})();
+
+
+</script>
+</div>
+</body>
+</html>
